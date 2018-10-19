@@ -8,14 +8,18 @@ div{
 #mitborder{
     border: 1px solid #000000;
 }
-#k{
-    width: 10em;
+#profilbild{
+    width: 11.5em;
     height: 10em;
 }
-#hk{
+#hundkatze{
     width: 60em;
     height:20em;
 }
 #rechts{
     text-align: right;
+}
+#socialmedia{
+    width: 3em;
+    height: 3em;
 }

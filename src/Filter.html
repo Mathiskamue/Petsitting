@@ -7,10 +7,20 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="css/datepicker.css" />
+        <script src="js/jQuery.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script>
+            $(function(){
+            $('.datepicker').datepicker();
+        });
+        </script>
     </head>
     <body>
         <main>
-            <button data-toggle="collapse" data-target="#filter">Filter</button>
+            <button data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f"/></button>
             <div id="filter" class="collapse">
             <div class="filter-block">
                 <form class="form-horizontal" action="">
@@ -28,6 +38,7 @@
                     <div class="row">
                         <div id="mitBorder" class= "col-sm-4">
                             <h3>Datum:</h3>
+                            <input class="datepicker" type="text" id="kalender" autocomplete="off" readonly />
                         </div>
                     </div>
                     <div class="row">
