@@ -12,13 +12,7 @@
     <link rel="stylesheet" href="css/index.css" />
 
 </head>
-<script>
-    window.addEventListener("loud",function() {
-    let image = document.querySelectorAll("aside");
-image.addEventListener("mouseover", () => image.src = "cat-2195538__480.jpg");
-image.addEventListener("mouseout", () => image.src = "nomao-saeki-59109-unsplash_0.jpg");
-});
-    </script>
+
 <!--<test>
                     <style>
                         div {
@@ -191,7 +185,14 @@ image.addEventListener("mouseout", () => image.src = "nomao-saeki-59109-unsplash
                         </div>
                         <div id="blog" class="col-sm-4">
                             <p class="text-center">
-                            <img src="dog-1736466_1920_0.jpg" width="100" alt="banner" />
+                            <img id="aside" src="dog-1736466_1920_0.jpg" width="100" alt="banner" />
+                            <script>
+                                window.addEventListener("loud",function() {
+                                let image = document.getElementById("aside");
+                                    image.addEventListener("mouseover", () => {image.src = "cat-2195538__480.jpg";});
+                                    image.addEventListener("mouseout", () => {image.src = "nomao-saeki-59109-unsplash_0.jpg";});
+                                    });
+                            </script>
                             <p class="text-center">Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen?</p>
                             </p>
                             <p class="text-center">
