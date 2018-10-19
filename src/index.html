@@ -1,12 +1,264 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Petsitting</title>
-    </head>
-    <body>
-        <h1>Hallo, Welt!</h1>
-        <a href="pets.html">Mathis</a>
-        <a href="AboutUs.html">Michele</a>
-    </body>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="Bootstrap/js/bootstrap.min.js"></script>
+    <!-- Stylesheet-->
+    <link rel="stylesheet" href="css/index.css" />
+
+</head>
+<script>
+    window.addEventListener("loud",function() {
+    let image = document.querySelectorAll("aside");
+image.addEventListener("mouseover", () => image.src = "cat-2195538__480.jpg");
+image.addEventListener("mouseout", () => image.src = "nomao-saeki-59109-unsplash_0.jpg");
+});
+    </script>
+<!--<test>
+                    <style>
+                        div {
+                            width: 100px;
+                            height: 100px;
+                            background: red;
+                            position: relative;
+                        /**    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+                            /**-webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+                            animation: mymove 5s infinite;
+                            animation-timing-function: linear;
+                        }
+
+                        /* Safari 4.0 - 8.0 */
+                        @-webkit-keyframes mymove {
+                            from {left: 0px;}
+                            to {left: 200px;}
+                        }
+
+                        @keyframes mymove {
+                            from {left: 0px;}
+                            to {left: 200px;}
+                        }
+                        </style>
+
+
+                        <h1>The animation-timing-function Property</h1>
+
+                        <p>Play an animation with the same speed from beginning to end:</p>
+                        <div></div>
+                        <p><strong>Note:</strong> The animation-timing-function property is not supported in Internet Explorer 9 and earlier versions.</p>
+</test>-->
+
+
+
+<!--Banner-->
+<header>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>My First Bootstrap 4 Page</h1>
+        <p>Resize this responsive page to see the effect!</p>
+        <img src="animals-2222007_1280.jpg" alt="banner" />
+    </div>
+    <!--Navigation-->
+    <!--
+                <div class="navbar">
+                        <img src="tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
+                        <a href="#home">Home</a>
+                        <a href="#home">Pets</a>
+                        <a href="#home">About Us</a>
+                        <input placeholder="Suche"/>
+                        <button type="button">Los Gehts!</button>
+                </div> -->
+    <div class="container-navi">
+        <ul id="navi" class="nav nav-tabs">
+            <li class="nav-item">
+                <img class"logo" src="tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+
+        </ul>
+    </div>
+    <!--<nav class="navbar navbar-expand-sm" style="background-color: #6B5B95">
+                <a class="navbar-brand" href="#">
+                    <img src="tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
+                </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <input placeholder="Suche"/>
+                            <button type="button">Los Gehts!</button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>-->
+
+</header>
+
+<main>
+    <div class="container-karusel">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <section class="container">
+                    <div id="carousel-screenshots" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-screenshots" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-screenshots" data-slide-to="1"></li>
+                            <li data-target="#carousel-screenshots" data-slide-to="2"></li>
+                            <li data-target="#carousel-screenshots" data-slide-to="3"></li>
+                            <li data-target="#carousel-screenshots" data-slide-to="4"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="animal-1870003__480.jpg" alt="Katze1">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="cat-2195538__480.jpg" alt="Katze2">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="pug-690566__480.jpg" alt="Hund1">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="rottweiler-1785760__480.jpg" alt="Hund2">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="weimaraner-1381186__480.jpg" alt="Hund3">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-screenshots" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-screenshots" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container"> -->
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <div class="container">
+                    <div class="row">
+                        <div id="blog" class="col-sm-4">
+                            <p class="text-center">
+                            <img src="nomao-saeki-59109-unsplash_0.jpg" width="100" alt="banner" />
+                            <p class="text-center">Wie Du Deinem Hund Deine Zuneigung am besten zeigst - auf das "Wie" kommt es an</p>
+                            </p>
+                            <p class="text-center">
+                            <button type="button" class="btn btn-primar" data-toggle="collapse" data-target="#demo">Erfahre mehr!</button>
+                            <div id="demo" class="collapse">
+                                <p class="text-justify">
+                                Eine der wichtigsten Bedürfnisse Deines Hundes ist die tägliche Dosis an Liebe und Zuneigung. Dies lässt Deinen Hund zufrieden und glücklich sein, zusätzlich fühlt er sich dadurch sicher bei Dir. Wenn Du Deinem
+                                Hund
+                                zeigst, dass Du ihn liebst, dann fühlt er sich wohl und beruhigt, er kann dadurch gut schlafen, und er fühlt sich ausgeglichen und geht somit selbstsicher durch den Tag. Wie aber kannst Du Deinem Hund Deine Liebe
+                                und
+                                Zuneigung am besten zeigen?
+                                </p>
+                            </div>
+                            </p>
+                        </div>
+                        <div id="blog" class="col-sm-4">
+                            <p class="text-center">
+                            <img src="dog-1736466_1920_0.jpg" width="100" alt="banner" />
+                            <p class="text-center">Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen?</p>
+                            </p>
+                            <p class="text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Erfahre mehr!</button>
+                            <div id="demo2" class="collapse">
+                                <p class="text-justify">
+                                Zahnpflege ist essentiell in der täglichen Pflegeroutine von Haustieren. Trotzdem vergessen wir sie oft. Was also solltest Du tun, um die Zähne Deiner Katzen oder Hunde gesund zu halten, ist Zähneputzen dabei
+                                wirklich
+                                notwendig?
+                                </p>
+                            </div>
+                            </p>
+                        </div>
+
+                        <div id="blog" class="col-sm-4">
+                            <p class="text-center">
+                            <img src="image_barking_dogs_0.jpg"  alt="banner" />
+                            <p class="text-center">Warum bellt mein Hund und wie habe ich es zu interpretieren?</p>
+                            </p>
+                            <p class="text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Erfahre mehr!</button>
+                            <div id="demo3" class="collapse">
+                                <p class="text-justify">
+                                Hunde bellen, das wissen wir. Aber warum bellen manche Hunde mehr als andere? Und was kannst Du tun, wenn Dein Hund (z.B. in der Tagesbetreuung für Hunde) nicht aufhört zu bellen? Erfahre hier warum Hunde viel
+                                bellen
+                                und lies unsere 3 Tipps wie Du andauerndes Bellen unterbrechen kannst.
+                                </p>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="trigger">
+                    <div class="box">
+                        <img class="aside" src="tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
+                    <!-- </div> -->
+                </div>
+                <script>
+                    $('.trigger').on('click', function() {
+                        $(this).toggleClass('clicked');
+                    })
+                </script>
+                <!-- <img class"aside" src="aafc733fcb6c557ae2b743febf9c9063.jpg"  alt="logo-pfote" />  -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <footer>
+                <ul>
+                    <li>&copy;</li>
+                    <li>Kontakt</li>
+                    <li>Presse</li>
+                    <li>Impressum</li>
+                </ul>
+
+            </footer>
+        </div>
+
+    </div>
+</main>
+
+
+
+
+
 </html>
