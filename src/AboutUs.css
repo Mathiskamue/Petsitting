@@ -1,0 +1,21 @@
+main{
+    text-align: center;
+}
+div{
+    text-align: left;
+
+}
+#mitborder{
+    border: 1px solid #000000;
+}
+#k{
+    width: 10em;
+    height: 10em;
+}
+#hk{
+    width: 60em;
+    height:20em;
+}
+#rechts{
+    text-align: right;
+}
