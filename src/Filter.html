@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filter</title>
+        <link rel="stylesheet" href="Filter.css"/>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <main>
+            <div class="filter-block">
+                <form class="form-horizontal" action="">
+                    <div class="row">
+                        <div id="mitBorder" class="col-sm-4">
+                            <h3>Tier:</h3>
+                            <div class="checkbox"><label><input type="checkbox" rel="hund"/> Hund</label></div>
+                            <div class="checkbox"><label><input type="checkbox" rel="katze"/> Katze</label></div>
+                            <div class="checkbox"><label><input type="checkbox" rel="vogel"/> Vogel</label></div>
+                            <div class="checkbox"><label><input type="checkbox" rel="hase"/> Hase</label></div>
+                            <div class="checkbox"><label><input type="checkbox" rel="schildkroete"/> Schildkr&oumlte</label></div>
+                            <div class="checkbox"><label><input type="checkbox" rel="sonstiges"/> Sonstiges</label></div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="mitBorder" class= "col-sm-4">
+                            <h3>Datum:</h3>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="mitBorder" class= "col-sm-4">
+                            <h3>Ort:</h3>
+	                        <label for="suche">Ort eingeben</label>
+	                        <input type="search" id="suche" placeholder="Ort...">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="mitBorder" class= "col-sm-4">
+                            <label>... Tiere wurden gefunden</label>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="mitBorder" class= "col-sm-4">
+                            <button type="button" id="filtern">Filter</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </body>
+</html>
