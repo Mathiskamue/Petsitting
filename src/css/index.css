@@ -87,3 +87,7 @@ img > .d-block
     border: 20px;
     border-style: solid;
 }
+#versteckt
+{
+    background-color: white;
+}
