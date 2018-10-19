@@ -1,5 +1,5 @@
 html{
-    background-color: gray;
+    background-color: white;
 }
 .modal {
     display: none;
@@ -11,5 +11,18 @@ html{
 }
 
 .mcontent{
-    
+    background-color: white;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.headline{
+    border-bottom: 1px solid black;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
