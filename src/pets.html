@@ -4,13 +4,17 @@
         <meta charset="utf-8" />
 
         <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-        <link rel="stylesheet" type="text/css" href="pets.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/pets.css" media="screen" />
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="datepicker/css/datepicker.css" />
+        <link rel="stylesheet" href="css/datepicker.css" />
         <script src="js/jQuery.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
-        
+        <script>
+            $(function(){
+            $('.datepicker').datepicker();
+        });
+        </script>
         <script>
           // Initialize Firebase
           var config = {
@@ -29,6 +33,7 @@
     </head>
     <body>
         <button id="hinzu">Hinzufügen</button>
+        <input class="datepicker" type="text" id="zeitraumText1"  autocomplete="off" readonly />
 
 
 
