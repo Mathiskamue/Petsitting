@@ -82,12 +82,7 @@ li , a
     display:inline-flex;
     list-style-type: none;
 }
-.row , .col-sm-2 , .col-sm-4 ,.col-sm-1 ,.col-sm-8
 
-{
-    border: 2px;
-    border-style: solid;
-}
 button
 {
     text-align:  center;

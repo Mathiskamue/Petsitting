@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html >
     <head>
         <title>About Us</title>
         <link rel="stylesheet" href="css/AboutUs.css"/>
+        <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body id="background" style="background-image: url(Bilder/green-1072828_960_720.jpg);">
         <header>
-
+            <div class="jumbotro-text-center" style="margin-bottom:0">
+                <img id="banner"src="Bilder/mountains_kopie.png" alt="banner" />
+            </div>
+        <nav  id="filter" class="navbar navbar-expand-sm">
+                        <a class="navbar-brand" href="#">
+                        <div>
+                            <img  src="Bilder/filter1.png" width="50"  alt="filter" />
+                        </div>
+                        </a>
+                        <div class="collapse navbar-collapse" id="navi">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a id="navi-home"class="nav-link" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="navi-aboutus"class="nav-link" href="AboutUs.html">About Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
         </header>
         <main>
             <p>
-                <img src="Bilder/hundkatze.jpg" alt="Hund und Katze" class="img-responsive" id="hundkatze"/>
+                <div class="row">
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-sm-8">
+                        <img src="Bilder/hundkatze.jpg" alt="Hund und Katze" class="img-responsive" id="hundkatze"/>
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                </div>
             </p>
             <div class="container">
             <div class="row">
-                <div class="col-sm-2"> </div>
-                <div id="mitborder" class="col-sm-6">
+                <div class="col-sm-1"> </div>
+                <div id="mitborder" class="col-sm-7">
                     <h2>
                         <b>Warum Wir ?</b>
                     </h2>
@@ -33,13 +66,16 @@
                         </ul>
                     </p>
                 </div>
-                <div id="mitborder" class="col-sm-2">
+                <div id="mitborder" class="col-sm-3">
                     <h5>Besuchen Sie uns auf ...</h5>
                     <div class= "row">
-                        <div class= "col-md-4 ">
+                        <div class= "col-sm-4 ">
                             <a href="http://facebook.com" class="button"><img src="Bilder/facebook.png" alt="Facebook" id="socialmedia"/></a>
                         </div>
-                        <div class= "col-md-4 ">
+                        <div  class="col-sm-1">
+
+                        </div>
+                        <div class= "col-sm-4 ">
                             <a href="http://instagram.com" class="button"><img src="Bilder/instagram.png" alt="Instagram" id="socialmedia"/></a>
                         </div>
                     </div>
