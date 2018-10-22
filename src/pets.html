@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
 
-        <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/pets.css" media="screen" />
-        <script src="js/pets.js"></script>
+<head>
+    <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/pets.css" media="screen" />
+    <script src="js/pets.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 
 
-        <link rel="stylesheet" href="css/datepicker.css" />
-        <script src="js/jQuery.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script>
-            $(function(){
+    <link rel="stylesheet" href="css/datepicker.css" />
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        $(function(){
             $('.datepicker').datepicker();
         });
         </script>
-        <script>
-          // Initialize Firebase
+    <script>
+        // Initialize Firebase
           var config = {
             apiKey: "AIzaSyDBsV0QZ81x49HR_hUl-LtA7Bn6SayHQ4M",
             authDomain: "petsitter-70f1e.firebaseapp.com",
@@ -33,69 +34,73 @@
         </script>
 
 
-        <title>My Songbook</title>
-    </head>
-    <body>
-        <button id="btnhinzu">Hinzufügen</button>
-        <input class="datepicker" type="text" id="zeitraumText1"  autocomplete="off" readonly />
+    <title>Petsitting</title>
+</head>
+
+<body>
+    <button id="btnhinzu">Hinzufügen</button>
+    <input class="datepicker" type="text" id="zeitraumText1" autocomplete="off" readonly />
 
 
 
-        <div class="modal" id="modaljs">
-            <div class="mcontent">
+    <div class="modal" id="modaljs">
 
-                <div class="container-fluid">
-                    <button class="close" id="btnzu">X</button>
-                    <div class="row no-gutters" id="headline">
-                        <div class="col-xs-8">Neue Visitenkarte hinzufügen</div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Name des Tieres</div>
-                        <div class="col-md-8"><input type ="text" id="rasse" autocomplete="off" /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Art des Tieres</div>
-                        <div class="col-md-8"><input type ="text" id="rasse" autocomplete="off" /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Rasse des Tieres</div>
-                        <div class="col-md-8"><input type ="text" id="rasse" autocomplete="off" /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-lg-4" id="ueberschrift">Zeitraum</div>
-                        <div class="col-lg-1">Vom</div>
-                        <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
-                        <div class="col-lg-1">Bis</div>
-                        <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Wohnort</div>
-                        <div class="col-md-8"><input type ="text" id="rasse" autocomplete="off" /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Passwort</div>
-                        <div class="col-md-8"><input type ="password" id="rasse" autocomplete="off" /></div>
-                    </div>
-                    <br />
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="ueberschrift">Kommentar</div>
-                        <div class="col-md-8"><textarea id="mainText" placeholder="Enter text here . . ."></textarea></div>
-                    </div>
-                    <br />
 
+        <div class="mcontent">
+
+
+            <div class="container-fluid" id="container">
+                <div class="row no-gutters">
+                    <div id="headline">
+
+                        <div><button class="close" id="btnzu">X</button>Neue Visitenkarte hinzufügen</div>
+
+                    </div>
                 </div>
 
-
-
-
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Name des Tieres</div>
+                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Art des Tieres</div>
+                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Rasse des Tieres</div>
+                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-lg-4" id="ueberschrift">Zeitraum</div>
+                    <div class="col-lg-1">Vom</div>
+                    <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
+                    <div class="col-lg-1">Bis</div>
+                    <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Wohnort</div>
+                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Passwort</div>
+                    <div class="col-md-8"><input type="password" id="rasse" autocomplete="off" /></div>
+                </div>
+                <br />
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="ueberschrift">Kommentar</div>
+                    <div class="col-md-8"><textarea id="mainText" placeholder="Enter text here . . ."></textarea></div>
+                </div>
+                <br />
             </div>
-        </div>
 
-    </body>
+        </div>
+    </div>
+
+</body>
+
 </html>
