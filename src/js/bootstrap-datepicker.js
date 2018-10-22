@@ -25,7 +25,7 @@
 		this.element = $(element);
 		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'dd/mm/yyyy');
 		this.picker = $(DPGlobal.template)
-							.appendTo('body')
+							.appendTo('.modal')
 							.on({
 								click: $.proxy(this.click, this)//,
 								//mousedown: $.proxy(this.mousedown, this)

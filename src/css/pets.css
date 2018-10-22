@@ -6,23 +6,38 @@ html{
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 
 }
 
 .mcontent{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
     background-color: white;
-    border: 1px solid #888;
-    width: 80%;
+    border: 1px solid #FFFFFF;
+    border-radius:20px;
+    overflow: auto;
 }
 
-.headline{
+#headline{
     border-bottom: 1px solid black;
+    color: #aaa;
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
 }
+
+#ueberschrift{
+    font-weight: bold;
+}
+
+
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    right:2%;
+
+
 }
