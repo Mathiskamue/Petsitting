@@ -30,9 +30,15 @@ background-color: green;
     background-color: #F1EAB9;
 }
 
-.jumbotron text-center
+/* .jumbotron-text-center
 {
     background-color: #DE8BB5FF;
+    width: auto; */
+/* } */
+#banner
+{
+    width: 50%;
+    height:50%;
 }
 .box {
 
@@ -60,13 +66,22 @@ background-color: green;
 }
 .nav-item:hover
 {
-    font-size: 450%;
+    font-size:175%;
 }
-.aside
+#navi
 {
-
+    background-color: black;
 }
-footer
+li , a
+{
+    color: white;
+}
+#navi-home
+{
+    border-bottom: 2px;
+    border-color: white;
+}
+/* footer */
 {
     background-color: black;
     display:inline-flex;
@@ -92,4 +107,13 @@ img > .d-block
     width: 50px;
     height: 50px;
     background-color: white;
+}
+.footer  li
+{
+    display: inline; /* li nebeneinander anzeigen */
+    list-style-type: none; /* ohne Aufzählungspunkte */
+}
+#fusszeile , #filter
+{
+    background-color: black;
 }
