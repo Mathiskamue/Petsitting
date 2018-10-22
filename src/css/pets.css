@@ -1,45 +1,60 @@
-html{
+html {
     background-color: white;
     font-size: 5vh;
 }
+
 .modal {
     display: none;
     z-index: 1;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: white;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    padding: 1em;
 }
 
-.mcontent{
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    right: 5%;
+.mcontent {
     background-color: white;
     border: 1px solid #FFFFFF;
-    border-radius:20px;
-    overflow: auto;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-#headline{
+#headline {
     border-bottom: 1px solid black;
     color: #aaa;
     margin: 0;
-    font-size: 24pt;
+    font-size: 5vh;
     font-weight: bold;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 2;
 }
 
-#ueberschrift{
+
+#ueberschrift {
     font-weight: bold;
 }
 
 
 
 .close {
-    position: absolute;
-    right:2%;
-    top:2%;
 
+    float: right;
 
+}
+
+input {
+    display: block;
+    width: 100%;
 }
