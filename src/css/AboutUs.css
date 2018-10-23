@@ -21,7 +21,7 @@ div{
     width: 100%;
     height: 100%;
 }
-#hundkatze{
+#animal{
     width: 100%;
     height:100%;
 }
@@ -31,4 +31,18 @@ div{
 #socialmedia{
     width: 3em;
     height: 3em;
+}
+li{
+        color: #000000 !important;
+}
+#weiß
+{
+    color: #FFFFFF;
+}
+#hunderassen{
+    width: 100%;
+    height:20em;
+}
+a{
+    color: white;
 }
