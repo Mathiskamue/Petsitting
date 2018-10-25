@@ -107,8 +107,8 @@ img > .d-block
 }
 .footer  li
 {
-    display: inline;
-    list-style-type: none; 
+    display: inline; /* li nebeneinander anzeigen */
+    list-style-type: none; /* ohne Aufzählungspunkte */
 }
 #fusszeile , #filter , #navi
 {
