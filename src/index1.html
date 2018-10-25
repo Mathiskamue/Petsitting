@@ -9,38 +9,8 @@
     <script src="Bootstrap/js/bootstrap.min.js"></script>
     <!-- Stylesheet-->
     <link rel="stylesheet" href="css/index.css" />
+    <title>PetSitting</title>
 </head>
-<!--<test>
-                    <style>
-                        div {
-                            width: 100px;
-                            height: 100px;
-                            background: red;
-                            position: relative;
-                        /**    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
-                            /**-webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
-                            animation: mymove 5s infinite;
-                            animation-timing-function: linear;
-                        }
-                        /* Safari 4.0 - 8.0 */
-                        @-webkit-keyframes mymove {
-                            from {left: 0px;}
-                            to {left: 200px;}
-                        }
-                        @keyframes mymove {
-                            from {left: 0px;}
-                            to {left: 200px;}
-                        }
-                        </style>
-
-                        <h1>The animation-timing-function Property</h1>
-                        <p>Play an animation with the same speed from beginning to end:</p>
-                        <div></div>
-                        <p><strong>Note:</strong> The animation-timing-function property is not supported in Internet Explorer 9 and earlier versions.</p>
-</test>-->
-
-<!--Banner-->
-<!-- Slider -->
 <body>
     <header>
         <div class="jumbotro-text-center" style="margin-bottom:0">
@@ -75,6 +45,7 @@
                     </div>
                 </nav>
     </header>
+    <!--Slider-->
         <main id="background"style="background-image: url(Bilder/wald.jpg);">
             <div class="row">
                 <div class="col-sm-2">
@@ -126,26 +97,26 @@
                         <div class="row">
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img id="blogbild1" src="Bilder/nomao-saeki-59109-unsplash_0.jpg" width="100" alt="banner" />
-                                <p class="text-center">Wie Du Deinem Hund Deine Zuneigung am besten zeigst - auf das "Wie" kommt es an</p>
+                                <img class="blogbild" src="Bilder/nomao-saeki-59109-unsplash_0.jpg"width="100" alt="banner" />
+                                <p class="text-center"><br>Wie Du Deinem Hund Deine Zuneigung am besten zeigst</br></p>
                                 </p>
                                 <p class="text-center">
-                                <button type="button" class="btn btn-primar" data-toggle="collapse" data-target="#demo">Erfahre mehr!</button>
-                                <div id="demo" class="collapse">
+                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Erfahre mehr!</button>
+                                <div id="demo2" class="collapse">
                                     <p class="text-justify">
-                                    Eine der wichtigsten Bedürfnisse Deines Hundes ist die tägliche Dosis an Liebe und Zuneigung. Dies lässt Deinen Hund zufrieden und glücklich sein, zusätzlich fühlt er sich dadurch sicher bei Dir. Wenn Du Deinem
-                                    Hund
-                                    zeigst, dass Du ihn liebst, dann fühlt er sich wohl und beruhigt, er kann dadurch gut schlafen, und er fühlt sich ausgeglichen und geht somit selbstsicher durch den Tag. Wie aber kannst Du Deinem Hund Deine Liebe
-                                    und
-                                    Zuneigung am besten zeigen?
+                                        Eine der wichtigsten Bedürfnisse Deines Hundes ist die tägliche Dosis an Liebe und Zuneigung. Dies lässt Deinen Hund zufrieden und glücklich sein, zusätzlich fühlt er sich dadurch sicher bei Dir. Wenn Du Deinem
+                                        Hund
+                                        zeigst, dass Du ihn liebst, dann fühlt er sich wohl und beruhigt, er kann dadurch gut schlafen, und er fühlt sich ausgeglichen und geht somit selbstsicher durch den Tag. Wie aber kannst Du Deinem Hund Deine Liebe
+                                        und
+                                        Zuneigung am besten zeigen?
                                     </p>
                                 </div>
                                 </p>
                             </div>
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img id="blogbild2" src="Bilder/dog-1736466_1920_0.jpg" width="100" alt="banner" />
-                                <p class="text-center">Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen?</p>
+                                <img class="blogbild" src="Bilder/dog-1736466_1920_0.jpg" width="100" alt="banner" />
+                                <p class="text-center"> <br>Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen? </br> </p>
                                 </p>
                                 <p class="text-center">
                                 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Erfahre mehr!</button>
@@ -160,8 +131,8 @@
                             </div>
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img id="blogbild3"src="Bilder/image_barking_dogs_0.jpg" width="100"  alt="banner" />
-                                <p class="text-center">Warum bellt mein Hund und wie habe ich es zu interpretieren?</p>
+                                <img class="blogbild" src="Bilder/image_barking_dogs_0.jpg" width="100"  alt="banner" />
+                                <p class="text-center"><br>Warum bellt mein Hund und wie habe ich es zu interpretieren?</br></p>
                                 </p>
                                 <p class="text-center">
                                 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Erfahre mehr!</button>
@@ -178,11 +149,11 @@
                                 window.addEventListener("load",function() {
 
                                     });
-                                    var image = document.getElementById('blogbild1');
-                                    var divhover = document.getElementById('blog');
+                                    var image = document.Selector('blogbild1');
+                                    var divhover = document.Selector('blog');
 
-                                                                        divhover.addEventListener("mouseover", function() {image.src = "Bilder/Koala.jpg";});
-                                                                        divhover.addEventListener("mouseout", () => {image.src = "Bilder/nomao-saeki-59109-unsplash_0.jpg";});
+                            divhover.addEventListener("mouseover", function() {image.src = "Bilder/Koala.jpg";});
+                            divhover.addEventListener("mouseout", () => {image.src = "Bilder/nomao-saeki-59109-unsplash_0.jpg";});
                             </script>
                         </div>
                     </div>
@@ -213,7 +184,6 @@
                 <ul>
                     <li>&copy;</li>
                     <li>Kontakt</li>
-                    <li>Presse</li>
                     <li>Impressum</li>
                 </ul>
                 </div>
