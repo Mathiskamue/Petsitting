@@ -108,6 +108,11 @@ img > .d-block
     display: inline; /* li nebeneinander anzeigen */
     list-style-type: none; /* ohne Aufzählungspunkte */
 }
+.blogbild img
+{
+    margin: 5em;
+    border: 10px;
+}
 #fusszeile , #filter , #navi
 {
     background-color: black;
