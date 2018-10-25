@@ -50,38 +50,13 @@
 
 <!--Banner-->
 <header>
+
     <div class="jumbotro-text-center" style="margin-bottom:0">
-        <img id="hunderassen"src="Bilder/hunderassen.gif" alt="banner" />
+        <h1>PetSitting</h1>
+
     </div>
-    <!--Navigation-->
-    <!--
-                <div class="navbar">
-                        <img src="tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
-                        <a href="#home">Home</a>
-                        <a href="#home">Pets</a>
-                        <a href="#home">About Us</a>
-                        <input placeholder="Suche"/>
-                        <button type="button">Los Gehts!</button>
-                </div> -->
-    <!-- <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul>
-                    <li class="nav-item">
-                        <img class"logo" src="Bilder/tiertatzendruckes-form_318-30445.jpg" width="50" alt="logo-pfote" />
-                    </li>
-                    <li class="nav-item">
-                        <a id="navi-home"class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="navi-aboutus"class="nav-link" href="AboutUs.html">About Us</a>
-                    </li>
-                        <!-- <a class="nav-link active" href="#">Home</a> -->
-                </ul>
-            </div>
-    </div>
+
+    <!-- Navigation -->
     <nav  id="filter" class="navbar navbar-expand-sm">
                 <a class="navbar-brand" href="#">
                 <div>
@@ -102,19 +77,27 @@
                         <li class="nav-item">
                             <a id="navi-aboutus"class="nav-link" href="AboutUs.html">About Us</a>
                         </li>
+                        <li>
+                            <div class="anima rotieren"/>
+                        </li>
                     </ul>
                 </div>
             </nav>
 
 </header>
+<!-- Slider -->
 
 <main>
     <div class="container-karusel">
+        <body id="background"style="background-image: url(Bilder/green-1072828_960_720.jpg);">
+
+        </body>
         <div class="row">
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8">
                 <section class="container">
+
                     <div id="carousel-screenshots" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-screenshots" data-slide-to="0" class="active"></li>
@@ -153,19 +136,20 @@
         </div>
     </div>
 
-    <!-- <div class="container"> -->
-        <div id="background"class="row">
-            <body style="background-image: url(Bilder/green-1072828_960_720.jpg);">
+    <!--Mittelteil -->
+        <div class="row">
 
-            </body>
             <div class="col-sm-2">
+
             </div>
             <div class="col-sm-8">
                 <div class="container">
+
                     <div class="row">
+
                         <div id="blog" class="col-sm-4">
                             <p class="text-center">
-                            <img src="Bilder/nomao-saeki-59109-unsplash_0.jpg" width="100" alt="banner" />
+                            <img id="blogbild1" src="Bilder/nomao-saeki-59109-unsplash_0.jpg" width="100" alt="banner" />
                             <p class="text-center">Wie Du Deinem Hund Deine Zuneigung am besten zeigst - auf das "Wie" kommt es an</p>
                             </p>
                             <p class="text-center">
@@ -176,21 +160,14 @@
                                 Hund
                                 zeigst, dass Du ihn liebst, dann fühlt er sich wohl und beruhigt, er kann dadurch gut schlafen, und er fühlt sich ausgeglichen und geht somit selbstsicher durch den Tag. Wie aber kannst Du Deinem Hund Deine Liebe
                                 und
-                                Zuneigung am besten zeigen?
+                                Zuneigung am besten zeigen? 
                                 </p>
                             </div>
                             </p>
                         </div>
                         <div id="blog" class="col-sm-4">
                             <p class="text-center">
-                            <img id="test" src="Bilder/dog-1736466_1920_0.jpg" width="100" alt="banner" />
-                            <script>
-                                window.addEventListener("loud",function() {
-                                let image = document.getElementById("test");
-                                    image.addEventListener("mouseover", () => {image.src = "cat-2195538__480.jpg";});
-                                    image.addEventListener("mouseout", () => {image.src = "nomao-saeki-59109-unsplash_0.jpg";});
-                                    });
-                            </script>
+                            <img id="blogbild2" src="Bilder/dog-1736466_1920_0.jpg" width="100" alt="banner" />
                             <p class="text-center">Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen?</p>
                             </p>
                             <p class="text-center">
@@ -207,7 +184,7 @@
 
                         <div id="blog" class="col-sm-4">
                             <p class="text-center">
-                            <img src="Bilder/image_barking_dogs_0.jpg" width="100"  alt="banner" />
+                            <img id="blogbild3"src="Bilder/image_barking_dogs_0.jpg" width="100"  alt="banner" />
                             <p class="text-center">Warum bellt mein Hund und wie habe ich es zu interpretieren?</p>
                             </p>
                             <p class="text-center">
@@ -221,9 +198,24 @@
                             </div>
                             </p>
                         </div>
+                        <script>
+                            window.addEventListener("load",function() {
+
+
+                                });
+
+                                var image = document.getElementById('blogbild1');
+                                var divhover = document.getElementById('blog');
+
+
+                                                                    divhover.addEventListener("mouseover", function() {image.src = "Bilder/Koala.jpg";});
+                                                                    divhover.addEventListener("mouseout", () => {image.src = "Bilder/nomao-saeki-59109-unsplash_0.jpg";});
+
+                        </script>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-2">
                 <section id="versteckt">
 
