@@ -1,106 +1,96 @@
-<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
-
-    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/pets.css" media="screen" />
     <script src="js/pets.js"></script>
+    <link rel="stylesheet" href="css/pets.css" />
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-    <link rel="stylesheet" href="css/datepicker.css" />
-    <script src="js/jQuery.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script>
-        $(function(){
-            $('.datepicker').datepicker();
-        });
-        </script>
-    <script>
-        // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyDBsV0QZ81x49HR_hUl-LtA7Bn6SayHQ4M",
-            authDomain: "petsitter-70f1e.firebaseapp.com",
-            databaseURL: "https://petsitter-70f1e.firebaseio.com",
-            projectId: "petsitter-70f1e",
-            storageBucket: "petsitter-70f1e.appspot.com",
-            messagingSenderId: "970527324747"
-          };
-          firebase.initializeApp(config);
-        </script>
-
-
-    <title>Petsitting</title>
 </head>
 
 <body>
-    <button id="btnhinzu">Hinzufügen</button>
-    <input class="datepicker" type="text" id="zeitraumText1" autocomplete="off" readonly />
+
+    <button id="hinzu">Open Modal</button>
 
 
-
-    <div class="modal" id="modaljs">
-
-
-        <div class="mcontent">
+    <div id="hmodal" class="modal">
 
 
-            <div class="container-fluid" id="container">
-                <div class="row no-gutters">
-                    <div id="headline">
-
-                        <div><button class="close" id="btnzu">X</button>Neue Visitenkarte hinzufügen</div>
-
-                    </div>
+        <div class="modal-content">
+            <div class="flex-head header">
+                <div class="flex-headitem-1 headline">
+                    Neue Visitenkarte erstellen
                 </div>
-
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Name des Tieres</div>
-                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                <div class="flex-headitem-2">
+                     <span class="close">X</span>
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Art des Tieres</div>
-                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Name des Tieres
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Rasse des Tieres</div>
-                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                <div class="flex-item-2">
+                    <input type="text" class="tbox" id="name" autocomplete="off" />
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-lg-4" id="ueberschrift">Zeitraum</div>
-                    <div class="col-lg-1">Vom</div>
-                    <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
-                    <div class="col-lg-1">Bis</div>
-                    <div class="col-lg-3"><input class="datepicker" type="text" autocomplete="off" readonly /></div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Art des Tieres
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Wohnort</div>
-                    <div class="col-md-8"><input type="text" id="rasse" autocomplete="off" /></div>
+                <div class="flex-item-2">
+                    <input type="text" class="tbox" id="art" autocomplete="off" />
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Passwort</div>
-                    <div class="col-md-8"><input type="password" id="rasse" autocomplete="off" /></div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Rasse des Tieres
                 </div>
-                <br />
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="ueberschrift">Kommentar</div>
-                    <div class="col-md-8"><textarea id="mainText" placeholder="Enter text here . . ."></textarea></div>
+                <div class="flex-item-2">
+                    <input type="text" class="tbox" id="rasse" autocomplete="off" />
                 </div>
-                <br />
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Zeitraum
+                </div>
+                <div class="flex-item-2">
+                    <div class="vonbis">Von</div> <input type="date" class="calender" id="von" autocomplete="off" />
+                </div>
+                <div class="flex-item-2">
+                    <div class="vonbis">Bis</div> <input type="date" class="calender" id="von" autocomplete="off" />
+                </div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Wohnort
+                </div>
+                <div class="flex-item-2">
+                    <input type="text" class="tbox" id="rasse" autocomplete="off" />
+                </div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Passwort
+                </div>
+                <div class="flex-item-2">
+                    <input type="password" class="tbox" id="rasse" autocomplete="off" />
+                </div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-item-1">
+                    Zusätzliche Informationen:
+                </div>
+                <div class="flex-item-2">
+                    <textarea class="comment"></textarea>
+                </div>
+            </div>
+            <div class="flex-container fbtn">
+                <div class="flex-item-btn">
+                    <button class="abschicken">Abschicken</button>
+                </div>
             </div>
 
-        </div>
-    </div>
 
+        </div>
 </body>
 
 </html>
