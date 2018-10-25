@@ -1,7 +1,7 @@
 window.addEventListener("load", function() {
+    let close = document.getElementById("close");
     let hmodal = document.getElementById("hmodal");
     let hinzu = document.getElementById("hinzu");
-    let close = document.getElementsByClassName("close")[0];
 
 
     hinzu.addEventListener("click", function () {
