@@ -12,7 +12,10 @@ background
        width: 100%;
 
 }
-
+#carousel-screenshots
+{
+    margin: 5em;
+}
 #blog
  {
 align-content: center;
