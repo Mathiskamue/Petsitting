@@ -1,6 +1,5 @@
 header{
 
-    background-image: url("Bilder/mountains-1412683_960_720.png");
 }
 
 background
@@ -89,7 +88,6 @@ background-color: black;
 display:inline-flex;
 list-style-type: none;
 }
-
 button
 {
     text-align:  center;
