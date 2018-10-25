@@ -4,6 +4,9 @@
     width: 100%;
     height:20em;
 }
+header{
+  width: 100%;
+}
 
 .nav-item:hover
 {
@@ -33,6 +36,7 @@
     color:blue;
     font-size:175%;
 }
+
 /* Modal */
 #attribute{
   height: 80%;
@@ -44,18 +48,45 @@
 .container{
   width:100%;
 }
+#mcontainer{
+      padding-right: 0;
+      padding-left: 0;
+}
 .mhead{
-  border-bottom: 2px solid black;
+  color:white;
+  border-bottom: 2px solid grey;
+  background-color: #4CAF50;
+  font-size: 3vh;
 }
 
+#close, #thead{
+  display:inline;
+  padding-right:1%;
+  padding-left: 1%;
+}
+#close{
+  float: right;
+  font-weight: bold;
+  color:white;
 
+}
+#close:hover{
+  color: black;
+  cursor: pointer;
+}
+.titel{
+  font-size: 2vh;
+}
 .input{
   width: 100%; /* für alle Felder des Containers bis auf Passwort*/
+  font-size: 2vh;
+  border: 1px solid black;
 }
 
 
 .input2{
   width: 100%; /*für Passwort-Feld */
+  border: 1px solid black;
 }
 
 @media (min-width: 1000px){
