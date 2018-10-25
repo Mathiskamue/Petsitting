@@ -158,3 +158,8 @@ img > .d-block
             transform: rotate(360deg) scale(1);
   }
 }
+.blogbild
+{
+    border: 20px solid #999;
+    border-radius: 120px;
+}
