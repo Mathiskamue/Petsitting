@@ -1,11 +1,14 @@
 #mitBorder{
     border: 1px solid;
 }
-#mitBorder div{
+
+button{
+    background-color: #FFFFFF;
 
 }
-button{
-    background-color: #008CBA;
+#f{
+    width: 100%;
+    height: 100%;
 }
 #suche {
 	width: 5em;
