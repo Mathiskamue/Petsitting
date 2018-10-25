@@ -44,6 +44,7 @@ header{
   margin: 5%;
   overflow-x: hidden;
   overflow-y: auto;
+  border: 3px solid #228B22; /* dunklere Rahmenfarbe */
 }
 .container{
   width:100%;
@@ -51,12 +52,19 @@ header{
 #mcontainer{
       padding-right: 0;
       padding-left: 0;
+
+}
+.rowtop{
+  margin-top: 3%;
+}
+.rowbottom{
+  margin-bottom: 3%;
 }
 .mhead{
   color:white;
   border-bottom: 2px solid grey;
   background-color: #4CAF50;
-  font-size: 3vh;
+  font-size: 3em;
 }
 
 #close, #thead{
@@ -75,26 +83,62 @@ header{
   cursor: pointer;
 }
 .titel{
-  font-size: 2vh;
+  font-size: 2.7em;
 }
-.input{
-  width: 100%; /* für alle Felder des Containers bis auf Passwort*/
-  font-size: 2vh;
+.vombis{
+  font-size: 1.7em;
+  color: gray;
+  font-style: italic;
+}
+.titel, .input, .input2, .input3, .vombis{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.input, .input2, .input3{
+  width: 95%;
+  font-size: 2em;
   border: 1px solid black;
+}
+.input3{
+  height: 10%;
+  resize: none;
+}
+#btnab{
+  text-align: center;
+}
+#abschicken{
+  color:white;
+  background-color: #4CAF50;
+  font-size: 2.5em;
+  margin-bottom: 3%;
+}
+#abschicken:hover{
+  color: black;
 }
 
 
-.input2{
-  width: 100%; /*für Passwort-Feld */
-  border: 1px solid black;
-}
+
 
 @media (min-width: 1000px){
+  .mhead{
+    font-size: 2em;
+  }
+  .input{
+    width: 60%;
+  }
+  .titel{
+    font-size: 2.3em;
+  }
   .input2{
     width:60%; /*für Passwort-Feld */
   }
   .headitem{
     font-size: 2em;
+  }
+  .titel, .input, .input2, .input3, .vombis{
+    margin-left: 0;
+    margin-right: 0;
   }
 
 }
