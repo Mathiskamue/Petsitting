@@ -108,10 +108,9 @@ img > .d-block
     display: inline; /* li nebeneinander anzeigen */
     list-style-type: none; /* ohne Aufzählungspunkte */
 }
-.blogbild img
+.blogbild
 {
-    margin: 5em;
-    border: 10px;
+    padding: 1em;
 }
 #fusszeile , #filter , #navi
 {

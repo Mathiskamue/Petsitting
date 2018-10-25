@@ -30,7 +30,7 @@
                     <div class="collapse navbar-collapse" id="navi">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a id="navi-home"class="nav-link" href="index.html">Home</a>
+                                <a id="navi-home"class="nav-link" href="index1.html">Home</a>
                             </li>
                             <li class="nav-item">
                             <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
@@ -39,7 +39,9 @@
                                 <a id="navi-aboutus"class="nav-link" href="AboutUs.html">About Us</a>
                             </li>
                             <li>
-                                <div class="anima rotieren"/>
+                                <div class="anima rotieren">
+
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -97,12 +99,12 @@
                         <div class="row">
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img class="blogbild" src="Bilder/nomao-saeki-59109-unsplash_0.jpg"width="100" alt="banner" />
+                                <img class="blogbild" id="event1" src="Bilder/nomao-saeki-59109-unsplash_0.jpg"width="200" alt="banner" />
                                 <p class="text-center"><br>Wie Du Deinem Hund Deine Zuneigung am besten zeigst</br></p>
                                 </p>
                                 <p class="text-center">
                                 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Erfahre mehr!</button>
-                                <div id="demo2" class="collapse">
+                                <div id="demo1" class="collapse">
                                     <p class="text-justify">
                                         Eine der wichtigsten Bedürfnisse Deines Hundes ist die tägliche Dosis an Liebe und Zuneigung. Dies lässt Deinen Hund zufrieden und glücklich sein, zusätzlich fühlt er sich dadurch sicher bei Dir. Wenn Du Deinem
                                         Hund
@@ -115,7 +117,7 @@
                             </div>
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img class="blogbild" src="Bilder/dog-1736466_1920_0.jpg" width="100" alt="banner" />
+                                <img class="blogbild" id="event2"  src="Bilder/dog-1736466_1920_0.jpg" width="200" alt="banner" />
                                 <p class="text-center"> <br>Musst Du die Zähne Deiner Katze oder Deines Hundes wirklich putzen? </br> </p>
                                 </p>
                                 <p class="text-center">
@@ -131,7 +133,7 @@
                             </div>
                             <div id="blog" class="col-sm-4">
                                 <p class="text-center">
-                                <img class="blogbild" src="Bilder/image_barking_dogs_0.jpg" width="100"  alt="banner" />
+                                <img class="blogbild" id="event3"  src="Bilder/image_barking_dogs_0.jpg" width="200"  alt="banner" />
                                 <p class="text-center"><br>Warum bellt mein Hund und wie habe ich es zu interpretieren?</br></p>
                                 </p>
                                 <p class="text-center">
@@ -149,11 +151,19 @@
                                 window.addEventListener("load",function() {
 
                                     });
-                                    var image = document.Selector('blogbild1');
-                                    var divhover = document.Selector('blog');
+                                    var image1 = document.getElementById('event1');
+                                    var divhover1 = document.getElementById('event1');
+                                    var image2 = document.getElementById('event2');
+                                    var divhover2 = document.getElementById('event2');
+                                    var image3 = document.getElementById('event3');
+                                    var divhover3 = document.getElementById('event3');
 
-                            divhover.addEventListener("mouseover", function() {image.src = "Bilder/Koala.jpg";});
-                            divhover.addEventListener("mouseout", () => {image.src = "Bilder/nomao-saeki-59109-unsplash_0.jpg";});
+                            divhover1.addEventListener("mouseover", function() {image1.src = "Bilder/Koala.jpg";});
+                            divhover1.addEventListener("mouseout", () => {image1.src = "Bilder/nomao-saeki-59109-unsplash_0.jpg";});
+                            divhover2.addEventListener("mouseover", function() {image2.src = "Bilder/Koala.jpg";});
+                            divhover2.addEventListener("mouseout", () => {image2.src = "Bilder/dog-1736466_1920_0.jpg";});
+                            divhover3.addEventListener("mouseover", function() {image3.src = "Bilder/Koala.jpg";});
+                            divhover3.addEventListener("mouseout", () => {image3.src = "Bilder/image_barking_dogs_0.jpg";});
                             </script>
                         </div>
                     </div>
