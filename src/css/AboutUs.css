@@ -43,3 +43,10 @@ li{
     width: 100%;
     height:20em;
 }
+/* Mathis CSS-code*/
+.white{
+    color: white;
+}
+.white:hover{
+    color:blue;
+}

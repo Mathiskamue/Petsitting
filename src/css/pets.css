@@ -52,7 +52,6 @@ background-color: white;
     background: #ddd;
     border-radius: 100px;
 
-    op
 
 }
 .trigger:hover .box
@@ -70,16 +69,17 @@ li , a
 {
     color: white;
 }
-#navi-home
+#navi-home , #navi-item li
 {
     border-bottom: 2px;
     border-color: white;
-}
-/* footer */
-{
     background-color: black;
     display:inline-flex;
     list-style-type: none;
+}
+footer
+{
+
 }
 
 button
