@@ -62,11 +62,16 @@ background-color: white;
     /* display: none; */
 }
 
+.col-sm-3
+{
+    text-align: center;
+}
+
 .trigger:hover .box
 {
     transform: translate(200px, 150px) rotate(20deg);
 }
-a:hover
+.navi-link:hover
 {
     font-size:175%;
 }
