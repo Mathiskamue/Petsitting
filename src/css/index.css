@@ -4,7 +4,7 @@ button
     position: relative;
     display: inline-flex;
 }
-li , a
+li , a , .navi-home
 {
     color: white;
 }
@@ -47,12 +47,11 @@ background-color: white;
 }
 .row
 {
-<<<<<<< HEAD
+
     margin: 0;
-=======
     width: 100%;
     height:100%;
->>>>>>> 98d78301eccb68e987c905d91f81e3fbaccd57a5
+
 }
 .box {
 
@@ -63,11 +62,16 @@ background-color: white;
     /* display: none; */
 }
 
+.col-sm-3
+{
+    text-align: center;
+}
+
 .trigger:hover .box
 {
     transform: translate(200px, 150px) rotate(20deg);
 }
-.nav-item:hover
+.navi-link:hover
 {
     font-size:175%;
 }
