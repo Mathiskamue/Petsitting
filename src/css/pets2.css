@@ -1,100 +1,207 @@
 /*Thomas Code für Header und Footer*/
-#hunderassen
-{
+html{
+    overflow-x: hidden;
+}
+#hunderassen {
     width: 100%;
-    height:20em;
-}
-header{
-  width: 100%;
+    height: 20em;
 }
 
-.nav-item:hover
-{
+header {
+    width: 100%;
 
 }
-.footer  li
-{
-    display: inline; /* li nebeneinander anzeigen */
-    list-style-type: none; /* ohne Aufzählungspunkte */
+
+.nav-item:hover {}
+
+.footer li {
+    display: inline;
+    /* li nebeneinander anzeigen */
+    list-style-type: none;
+    /* ohne Aufzählungspunkte */
     color: white;
 }
-#fusszeile , #filter , #navi
-{
+
+#fusszeile, #filter, #navi {
     background-color: black;
 }
-
-
 
 /* Mathis CSS-code*/
 /* Body */
 /* Header */
-.white{
+.white {
     color: white;
-
 }
-.white:hover{
-    color:blue;
-    font-size:175%;
+
+.white:hover {
+    color: blue;
+    font-size: 175%;
 }
 
 /* Modal */
-#attribute{
-  height: 80%;
-  width: 90%;
-  margin: 5%;
-  overflow-x: hidden;
-  overflow-y: auto;
+#hmodal{
+    background-color: rgba(0,0,0,0.6);
 }
-.container{
-  width:100%;
-}
-#mcontainer{
-      padding-right: 0;
-      padding-left: 0;
-}
-.mhead{
-  color:white;
-  border-bottom: 2px solid grey;
-  background-color: #4CAF50;
-  font-size: 3vh;
+#attribute {
+    height: 80%;
+    width: 90%;
+    margin: 5%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 3px solid #228B22;
+    /* dunklere Rahmenfarbe */
 }
 
-#close, #thead{
-  display:inline;
-  padding-right:1%;
-  padding-left: 1%;
-}
-#close{
-  float: right;
-  font-weight: bold;
-  color:white;
-
-}
-#close:hover{
-  color: black;
-  cursor: pointer;
-}
-.titel{
-  font-size: 2vh;
-}
-.input{
-  width: 100%; /* für alle Felder des Containers bis auf Passwort*/
-  font-size: 2vh;
-  border: 1px solid black;
+.container {
+    width: 100%;
 }
 
+#mcontainer {
+    padding-right: 0;
+    padding-left: 0;
+}
 
+.rowtop {
+    margin-top: 3%;
+}
+
+.rowbottom {
+    margin-bottom: 3%;
+}
+
+.mhead {
+    color: white;
+    border-bottom: 2px solid grey;
+    background-color: #4CAF50;
+    font-size: 3em;
+}
+
+#close, #thead {
+    display: inline;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+#close {
+    float: right;
+    font-weight: bold;
+    color: white;
+}
+
+#close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.titel {
+    font-size: 2.7em;
+}
+
+.vombis {
+    font-size: 1.7em;
+    color: gray;
+    font-style: italic;
+}
+
+.titel, .input, .input2, .input3, .vombis {
+    margin-left: 2%;
+    margin-right: 2%;
+}
 .input2{
-  width: 100%; /*für Passwort-Feld */
-  border: 1px solid black;
+    width: 90%;
+}
+.input, .input2, .input3 {
+    width: 95%;
+    font-size: 2em;
+    border: 1px solid #BEBEBE;
+    border-radius: 10px;
+    outline:none;
+}
+.input:hover, .input2:hover, .input3:hover {
+    width: 95%;
+    border: 1px solid blue;
+    border-radius: 10px;
 }
 
-@media (min-width: 1000px){
-  .input2{
-    width:60%; /*für Passwort-Feld */
-  }
-  .headitem{
-    font-size: 2em;
-  }
+.input3 {
+    height: 10%;
+    resize: none;
+}
 
+#btnab {
+    text-align: center;
+}
+
+#abschicken {
+    color: white;
+    background-color: #4CAF50;
+    font-size: 2.5em;
+    margin-bottom: 3%;
+}
+
+#abschicken:hover {
+    color: black;
+}
+
+@media (min-width: 1000px) {
+
+    #attribute {
+        height: 90%;
+        width: 50%;
+        margin-top: 3%;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+    .mhead {
+        font-size: 1.3em;
+    }
+
+    .rowtop {
+        margin-top: 1%;
+    }
+
+    .rowbottom {
+        margin-bottom: 1%;
+    }
+    .titel {
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+
+    .vombis {
+        font-size: 1em;
+        color: gray;
+        font-style: italic;
+    }
+    .input3{
+        height: 15%;
+    }
+    .input{
+        width: 95%;
+    }
+    .input2, .input3{
+        width: 93%;
+    }
+    .input, .input2, .input3 {
+
+        outline: none;
+        font-size: 1em;
+        border-style: none;
+        border: 1px solid #BEBEBE;
+        border-radius: 10px;
+    }
+    .input:hover, .input2:hover, .input3:hover {
+        border: 1px solid blue;
+
+    }
+    .input:focus, .input2:focus, .input3:focus {
+        border: 1px solid black;
+    }
+
+    .titel, .input, .input2, .input3, .vombis {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
 }
