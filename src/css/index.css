@@ -1,10 +1,21 @@
-header{
 
+button
+{
+    position: relative;
+    display: inline-flex;
+}
+li , a
+{
+    color: white;
+}
+#hunderassen
+{
+    width:100%;
+    height:20em;
 }
 
 #background
 {
-
        background-repeat: no-repeat;
        background-position: center center;
        background-size: cover;
@@ -25,25 +36,18 @@ background-color: white;
 {
     width:50%;
 }
-
-/* .container-karusel
+#navi-home
 {
-    background-color: #D8B5FF; */
+    border-bottom: 2px;
+    border-color: white;
 }
-.container-blog
+#fusszeile , #navigation , #navi
 {
-    background-color: #F1EAB9;
+    background-color: black;
 }
-
-/* .jumbotron-text-center
+.row
 {
-    background-color: #DE8BB5FF;
-    width: auto; */
-/* } */
-#hunderassen
-{
-    width: 100%;
-    height:20em;
+    margin: 0;
 }
 .box {
 
@@ -51,81 +55,29 @@ background-color: white;
     height: 50px;
     transition: transform 300ms ease-in-out;
     pointer-events: none;
+    /* display: none; */
 }
-.trigger {
-    width: 50px;
-    height: 50px;
-    border: 20px solid #999;
-    background: #ddd;
-    border-radius: 100px;
 
-    op
-
-}
 .trigger:hover .box
-/**.trigger.clicked .box**/
 {
-
     transform: translate(200px, 150px) rotate(20deg);
-    background-color: pink;
 }
 .nav-item:hover
 {
     font-size:175%;
-}
-li , a
-{
-    color: white;
-}
-#navi-home
-{
-    border-bottom: 2px;
-    border-color: white;
-}
-/* footer */
-{
-background-color: black;
-display:inline-flex;
-list-style-type: none;
-}
-button
-{
-    text-align:  center;
-}
-img > .d-block
-{
-    border: 20px;
-    border-style: solid;
-}
-#versteckt
-{
-    width: 50px;
-    height: 50px;
-    background-color: white;
 }
 .footer  li
 {
     display: inline; /* li nebeneinander anzeigen */
     list-style-type: none; /* ohne Aufzählungspunkte */
 }
-.blogbild
+.img-fluid
 {
-    padding: 1em;
-}
-#fusszeile , #filter , #navi
-{
-    background-color: black;
-}
-/* .anima
-{
-    width: 100px;
-    height:100px;
-    background-color: red;
-    position: relative;
-    margin: 50px;
-    display: inline-block;
+    border: 20px solid #999;
+    border-radius: 120px;
 
-} */
+}
+
 .anima:after, .anima:before
 {
     content:"";
@@ -142,7 +94,13 @@ img > .d-block
   border: 4px solid transparent;
   border-top-color: white;
   border-bottom-color: white;
-  animation: spinny 1s linear infinite;
+  animation: spinny 5s linear infinite;
+
+}
+.container > .row
+{
+    border-radius: 120px;
+    background-color: black;
 }
 @-webkit-keyframes spinny {
   0% {
@@ -157,9 +115,4 @@ img > .d-block
     -webkit-transform: rotate(360deg) scale(1);
             transform: rotate(360deg) scale(1);
   }
-}
-.blogbild
-{
-    border: 20px solid #999;
-    border-radius: 120px;
 }
