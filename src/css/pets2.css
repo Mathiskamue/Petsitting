@@ -43,9 +43,10 @@ header {
     background-color: rgba(0,0,0,0.6);
 }
 #attribute {
-    height: 80%;
+
     width: 90%;
     margin: 5%;
+    margin-top: 15%;
     overflow-x: hidden;
     overflow-y: auto;
     border: 3px solid #228B22;
@@ -127,26 +128,39 @@ header {
     height: 10%;
     resize: none;
 }
-
+.anmerkung{
+    text-align: right;
+    color: #969696;
+    margin-right: 5%;
+    font-size: 2em;
+    font-style: italic;
+    margin-bottom: 2%;
+}
 #btnab {
     text-align: center;
 }
 
-#abschicken {
+.btn {
     color: white;
     background-color: #4CAF50;
     font-size: 2.5em;
     margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 95%;
+    border-radius: 20px;
+}
+.ab{
+    font-size: 2.7em;
 }
 
-#abschicken:hover {
+.btn:hover {
     color: black;
 }
 
 @media (min-width: 1000px) {
 
     #attribute {
-        height: 90%;
         width: 50%;
         margin-top: 3%;
         margin-left: 25%;
@@ -164,6 +178,7 @@ header {
     .rowbottom {
         margin-bottom: 1%;
     }
+
     .titel {
         font-size: 1em;
         font-weight: bold;
@@ -184,6 +199,9 @@ header {
     .input2, .input3{
         width: 93%;
     }
+    .itest{
+        width: 100%;
+    }
     .input, .input2, .input3 {
 
         outline: none;
@@ -203,5 +221,17 @@ header {
     .titel, .input, .input2, .input3, .vombis {
         margin-left: 3%;
         margin-right: 3%;
+    }
+    .anmerkung{
+        font-size: 1em;
+    }
+    .btn {
+        font-size: 1.5em;
+        margin-bottom: 3%;
+        margin-top: 4%;
+        border-radius: 10px;
+    }
+    .ab{
+        font-size: 1.5em;
     }
 }
