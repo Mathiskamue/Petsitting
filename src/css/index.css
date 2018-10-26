@@ -102,10 +102,6 @@ background-color: white;
   animation: spinny 5s linear infinite;
 
 }
-.container > .row
-{
-    border-radius: 120px;
-    background-color: black;
 }
 @-webkit-keyframes spinny {
   0% {
