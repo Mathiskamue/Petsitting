@@ -56,9 +56,7 @@ header {
 }
 
 /* Eintrag */
-.entryrow{
 
-}
 
 .entry1, .entry2{
     border: 5px solid #4CAF50;
@@ -67,6 +65,7 @@ header {
     border-radius: 20px;
     margin-bottom: 2%;
     margin-right: 1%;
+    overflow: auto;
 }
 .entryhead{
     border-bottom: 3px solid #BEBEBE;
@@ -77,17 +76,23 @@ header {
     font-weight: bold;
     display: inline;
 }
-.entryh{
-    display: inline;
-}
+
 .entrycomment{
     border-bottom: 3px solid #BEBEBE;
+    width: 100%;
+    max-height: 8%;
+    word-wrap: break-word;
+    overflow: auto;
 }
 .loeschen{
     text-align: right;
     margin-right: 1%;
     color: blue;
     text-decoration: underline;
+    margin-bottom: 1%;
+}
+#ids{
+    display: none;
 }
 /* Modal */
 #hmodal{
@@ -216,13 +221,17 @@ header {
 
 @media (min-width: 1000px) {
 
+
     .btn2 {
         font-size: 1.3em;
         width: 20%;
     }
+    .entrycomment{
+        max-height: 20%;
+    }
 
     #attribute {
-        width: 51%;
+        width: 52%;
         margin-top: 3%;
         margin-left: 25%;
         margin-right: 25%;

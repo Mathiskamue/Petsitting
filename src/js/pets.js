@@ -20,10 +20,47 @@ window.addEventListener("load", function() {
 
     let tester = document.getElementById("tester");
     tester.addEventListener("click",function(){
-        let dummy = document.createElement("div");
-        dummy.innerHTML = tentry;
-        dummy.innerHTML = dummy.innerHTML.replace("$Name1$", "Überschrift");
-        document.getElementById("eintrag").appendChild(dummy);
+        let ref = firebase.database().ref("eintrag");
+        ref.once("value")
+            .then(function(snapshot) {
+                let zahl = snapshot.child("highest").val();
+                for(let i = 1; i<zahl;i++){
+                    let dummy = document.createElement("div");
+                    dummy.innerHTML = tentry;
+                    dummy.innerHTML = dummy.innerHTML.replace("$Name1$",snapshot.child(i).child("name").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Art1$",snapshot.child(i).child("art").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$",snapshot.child(i).child("rasse").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$",snapshot.child(i).child("wohnort").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(i).child("email").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(i).child("zeitraum").child("Von").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(i).child("zeitraum").child("Bis").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(i).child("kommentar").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(i).child("ID").val());
+
+                    dummy.innerHTML = dummy.innerHTML.replace("$Name2$",snapshot.child(i+1).child("name").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Art2$",snapshot.child(i+1).child("art").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$",snapshot.child(i+1).child("rasse").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$",snapshot.child(i+1).child("wohnort").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(i+1).child("email").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(i+1).child("zeitraum").child("Von").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(i+1).child("zeitraum").child("Bis").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(i+1).child("kommentar").val());
+                    dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(i+1).child("ID").val());
+
+                    document.getElementById("eintrag").appendChild(dummy);
+
+                    i++;
+                }
+
+
+           });
+
+
+
+        //let dummy = document.createElement("div");
+        //dummy.innerHTML = tentry;
+        //dummy.innerHTML = dummy.innerHTML.replace("$Name1$", "Überschrift");
+        //document.getElementById("eintrag").appendChild(dummy);
 
     });
 
@@ -109,15 +146,10 @@ window.addEventListener("load", function() {
                     ref.child("highest").set(zahl);
                });
                hmodal.style.display = "none";
+
         }
         else {
             alert('Bitte füllen Sie alle Pflichtfelder aus!');
         }
-
-
-
     });
-
-
-
 });
