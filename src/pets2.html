@@ -70,7 +70,42 @@
 
     <!--Mathis Code -->
 
-    <button id="hinzu">Open Modal</button>
+    <!--Template Code-->
+    <template id="tentry">
+        <div class="row entryrow">
+            <div class="col-lg-5 entry1">
+                <div class="entryhead">$Name1$</div>
+                <div>Art: $Art1$</div>
+                <div>Rasse: $Rasse1$</div>
+                <div>Wohnort: $Wohnort1$</div>
+                <div>Zeitraum: Vom $vom1$ bis $bis1$</div>
+                <div>Email: $Email1$</div>
+                <div>Kommentar:</div>
+                <div class="entrycomment">$kommentar1$</div>
+                <div class="loeschen">Eintrag Löschen</div>
+            </div>
+            <div class="col-lg-5 entry2">
+                <div class="entryhead">$Name2$</div>
+                <div class="entryh"><div class="entryt">Art:</div>$Art2$</div>
+                <div>Rasse: $Rasse2$</div>
+                <div>Wohnort: $Wohnort2$</div>
+                <div>Email: $Email2$</div>
+                <div>Zeitraum: Vom $vom2$ bis $bis2$</div>
+                <div>Kommentar:</div>
+                <div class="entrycomment">$kommentar2$</div>
+                <div class="loeschen">Eintrag Löschen</div>
+            </div>
+        </div>
+    </template>
+
+
+    <div class="headline"><button id="hinzu" class="btn2">Eintrag hinzufügen</button></div>
+    <button class="btn2" id="tester">Tester</button>
+    <div class="container" id="eintrag">
+
+    </div>
+
+
 
 
     <div id="hmodal" class="modal">
@@ -119,6 +154,15 @@
                     </div>
                     <div class="col-lg-8">
                         <input type="text" class="input" id="wohn" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row rowbottom">
+                    <div class="col-lg-3 titel">
+                        E-Mail *
+                    </div>
+                    <div class="col-lg-8">
+                        <input type="text" class="input" id="email" autocomplete="off" />
                     </div>
                 </div>
 
