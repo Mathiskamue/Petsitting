@@ -18,6 +18,11 @@ window.addEventListener("load", function() {
     let comment = document.getElementById("comment");
     let submitBtn = document.getElementById("submitBtn");
 
+
+
+
+
+
     let tester = document.getElementById("tester");
     tester.addEventListener("click",function(){
         let ref = firebase.database().ref("eintrag");
@@ -58,7 +63,7 @@ window.addEventListener("load", function() {
                         document.getElementById("email1").id= snapshot.child(i).child("ID").val() + "email";
                         document.getElementById("zeitraum1").id= snapshot.child(i).child("ID").val() + "zeitraum";
                         document.getElementById("kommentar1").id= snapshot.child(i).child("ID").val() + "kommentar";
-                        document.getElementById("loesch1").id= snapshot.child(i).child("ID").val() + "loesch";
+                        document.getElementById("loesch1").id= snapshot.child(i).child("ID").val() ;
 
                         document.getElementById("eintrag2").id= snapshot.child(i+1).child("ID").val() + "entry";
                         document.getElementById("name2").id= snapshot.child(i+1).child("ID").val() + "name";
@@ -68,7 +73,7 @@ window.addEventListener("load", function() {
                         document.getElementById("email2").id= snapshot.child(i+1).child("ID").val() + "email";
                         document.getElementById("zeitraum2").id= snapshot.child(i+1).child("ID").val() + "zeitraum";
                         document.getElementById("kommentar2").id= snapshot.child(i+1).child("ID").val() + "kommentar";
-                        document.getElementById("loesch2").id= snapshot.child(i+1).child("ID").val() + "loesch";
+                        document.getElementById("loesch2").id= snapshot.child(i+1).child("ID").val() ;
 
 
                         i++;
@@ -108,7 +113,7 @@ window.addEventListener("load", function() {
                         document.getElementById("email1").id= snapshot.child(i).child("ID").val() + "email";
                         document.getElementById("zeitraum1").id= snapshot.child(i).child("ID").val() + "zeitraum";
                         document.getElementById("kommentar1").id= snapshot.child(i).child("ID").val() + "kommentar";
-                        document.getElementById("loesch1").id= snapshot.child(i).child("ID").val() + "loesch";
+                        document.getElementById("loesch1").id= snapshot.child(i).child("ID").val() ;
 
                         document.getElementById("eintrag2").id= snapshot.child(i+1).child("ID").val() + "entry";
                         document.getElementById("name2").id= snapshot.child(i+1).child("ID").val() + "name";
@@ -118,7 +123,7 @@ window.addEventListener("load", function() {
                         document.getElementById("email2").id= snapshot.child(i+1).child("ID").val() + "email";
                         document.getElementById("zeitraum2").id= snapshot.child(i+1).child("ID").val() + "zeitraum";
                         document.getElementById("kommentar2").id= snapshot.child(i+1).child("ID").val() + "kommentar";
-                        document.getElementById("loesch2").id= snapshot.child(i+1).child("ID").val() + "loesch";
+                        document.getElementById("loesch2").id= snapshot.child(i+1).child("ID").val() ;
 
 
                         i++;
@@ -146,7 +151,7 @@ window.addEventListener("load", function() {
                     document.getElementById("email1").id= snapshot.child(zahl).child("ID").val() + "email";
                     document.getElementById("zeitraum1").id= snapshot.child(zahl).child("ID").val() + "zeitraum";
                     document.getElementById("kommentar1").id= snapshot.child(zahl).child("ID").val() + "kommentar";
-                    document.getElementById("loesch1").id= snapshot.child(zahl).child("ID").val() + "loesch";
+                    document.getElementById("loesch1").id= snapshot.child(zahl).child("ID").val();
 
                     document.getElementById("eintrag2").style.display="none";
                 }
@@ -259,3 +264,30 @@ window.addEventListener("load", function() {
         }
     });
 });
+
+
+
+
+function reply_click(clicked_id)
+{
+    let password = prompt("Bitte geben Sie ihr Passwort ein:");
+    let ref = firebase.database().ref("eintrag");
+    ref.once("value")
+       .then(function(snapshot) {
+           let zahl = snapshot.child("highest").val()
+           for(let i=1;i<zahl;i++){
+               if(clicked_id==snapshot.child(i).child("ID").val()){
+                   alert("funktioniert");
+                   alert(snapshot.child(i).child("passwort").val());
+                   if(password==snapshot.child(i).child("passwort").val()){
+                       alert("funktioniert2");
+                   }
+                   else{
+                       reply_click(clicked_id);
+                   }
+                   break;
+               }
+           }
+
+       });
+}

@@ -93,6 +93,7 @@ header {
     color: blue;
     text-decoration: underline;
     margin-bottom: 1%;
+    cursor: pointer;
 }
 #ids{
     display: none;

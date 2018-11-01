@@ -83,7 +83,7 @@
                 <div id="zeitraum1">Vom $vom1$ bis $bis1$</div>
                 <div><div class="entryt">Kommentar:</div></div>
                 <div class="entrycomment" id="kommentar1">$kommentar1$</div>
-                <div class="loeschen" id="loesch1">Eintrag Löschen<div id="ids">$ID1$</div></div>
+                <div class="loeschen" id="loesch1" onclick="reply_click(this.id)">Eintrag Löschen<div id="ids">$ID1$</div></div>
             </div>
             <div class="col-lg-5 entry2" id="eintrag2">
                 <div class="entryhead" id="name2">$Name2$</div>
@@ -95,10 +95,11 @@
                 <div id="zeitraum2">Vom $vom2$ bis $bis2$</div>
                 <div><div class="entryt">Kommentar:</div></div>
                 <div class="entrycomment" id="kommentar2">$kommentar2$</div>
-                <div class="loeschen" id="loesch2">Eintrag Löschen<div id="ids">$ID2$</div></div>
+                <div class="loeschen" id="loesch2" onclick="reply_click(this.id)">Eintrag Löschen<div id="ids">$ID2$</div></div>
             </div>
         </div>
     </template>
+
 
 
     <div class="headline"><button id="hinzu" class="btn2">Eintrag hinzufügen</button></div>
