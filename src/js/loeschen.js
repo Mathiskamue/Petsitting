@@ -31,7 +31,7 @@ async function loeschfunc(clicked_id) {
 
 
           } else {
-
+            alert('Passwort falsch, bitte achten Sie auf Groß-und Kleinschreibung!');
           }
           break;
         }
