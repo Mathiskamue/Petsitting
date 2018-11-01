@@ -1,15 +1,19 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <script src="js/pets.js"></script>
-    <script src="js/loeschen.js"></script>
-    <link rel="stylesheet" href="css/pets.css" />
-    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
+  <meta charset="utf-8" />
+  <script src="js/pets.js"></script>
+  <script src="js/loeschen.js"></script>
+  <link rel="stylesheet" href="css/pets.css" />
+  <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/Filter.css"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script>
-            // Initialize Firebase
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+  <script>
+    // Initialize Firebase
       var config = {
         apiKey: "AIzaSyDBsV0QZ81x49HR_hUl-LtA7Bn6SayHQ4M",
         authDomain: "petsitter-70f1e.firebaseapp.com",
@@ -27,217 +31,310 @@
 
 <body>
 
-    <!--Thomas Code -->
-    <header>
-        <div class="jumbotro-text-center" style="margin-bottom:0">
-            <img id="hunderassen" src="Bilder/hunderassen.gif" alt="banner" />
-        </div>
+  <!--Thomas Code -->
+  <header>
+    <div class="jumbotro-text-center" style="margin-bottom:0">
+      <img id="hunderassen" src="Bilder/hunderassen.gif" alt="banner" />
+    </div>
 
-        <nav id="filter" class="navbar navbar-expand-sm">
-            <a class="navbar-brand" href="#">
-                <div>
-                    <img src="Bilder/filter1.png" width="50" alt="filter" />
-                </div>
-            </a>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <nav id="filter" class="navbar navbar-expand-sm">
+      <a class="navbar-brand" href="#">
+        <div>
+          <img src="Bilder/filter1.png" width="50" alt="filter" />
+        </div>
+      </a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button> -->
-            <!--    <div class="collapse navbar-collapse" id="navi"> -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a id="navi-home" class="nav-link" href="index.html">
-                        <div class="white">
-                            Home
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a id="navi-pets" class="nav-link" href="pets.html">
-                        <div class="white">Pets</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a id="navi-aboutus" class="nav-link" href="AboutUs.html">
-                        <div class="white">About Us</div>
-                    </a>
-                </li>
-            </ul>
+      <!--    <div class="collapse navbar-collapse" id="navi"> -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a id="navi-home" class="nav-link" href="index.html">
+            <div class="white">
+              Home
             </div>
-        </nav>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="navi-pets" class="nav-link" href="pets.html">
+            <div class="white">Pets</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="navi-aboutus" class="nav-link" href="AboutUs.html">
+            <div class="white">About Us</div>
+          </a>
+        </li>
+      </ul>
+      </div>
+    </nav>
 
-    </header>
+  </header>
 
 
 
-    <!--Mathis Code -->
+  <!--Mathis Code -->
 
-    <!--Template Code-->
-    <template id="tentry">
-        <div class="row entryrow">
-            <div class="col-lg-5 entry1" id="eintrag1">
-                <div class="entryhead" id="name1">$Name1$</div>
-                <div><div class="entryt" id="art1">Art:</div> $Art1$</div>
-                <div><div class="entryt" id="rasse1">Rasse:</div> $Rasse1$</div>
-                <div><div class="entryt" id="wohnort1">Wohnort:</div> $Wohnort1$</div>
-                <div><div class="entryt" id="email1">Email:</div> $Email1$</div>
-                <div><div class="entryt">Zeitraum:</div></div>
-                <div id="zeitraum1">Vom $vom1$ bis $bis1$</div>
-                <div><div class="entryt">Kommentar:</div></div>
-                <div class="entrycomment" id="kommentar1">$kommentar1$</div>
-                <div class="loeschen" id="loesch1" onclick="reply_click(this.id)">Eintrag Löschen<div id="ids">$ID1$</div></div>
-            </div>
-            <div class="col-lg-5 entry2" id="eintrag2">
-                <div class="entryhead" id="name2">$Name2$</div>
-                <div><div class="entryt" id="art2">Art:</div> $Art2$</div>
-                <div><div class="entryt" id="rasse2">Rasse:</div> $Rasse2$</div>
-                <div><div class="entryt" id="wohnort2">Wohnort:</div> $Wohnort2$</div>
-                <div><div class="entryt" id="email2">Email:</div> $Email2$</div>
-                <div><div class="entryt">Zeitraum:</div></div>
-                <div id="zeitraum2">Vom $vom2$ bis $bis2$</div>
-                <div><div class="entryt">Kommentar:</div></div>
-                <div class="entrycomment" id="kommentar2">$kommentar2$</div>
-                <div class="loeschen" id="loesch2" onclick="reply_click(this.id)">Eintrag Löschen<div id="ids">$ID2$</div></div>
-            </div>
+  <!--Template Code-->
+  <template id="tentry">
+    <div class="row entryrow">
+      <div class="col-lg-5 entry1" id="eintrag1">
+        <div class="entryhead" id="name1">$Name1$</div>
+        <div>
+          <div class="entryt" id="art1">Art:</div> $Art1$
         </div>
-    </template>
-
-
-
-    <div class="headline"><button id="hinzu" class="btn2">Eintrag hinzufügen</button></div>
-    <div class="container" id="eintrag"></div>
-
-
-
-
-
-
-    <div id="hmodal" class="modal">
-        <div class="modal-content" id="attribute">
-            <!--Bootstrap CSS Grid -->
-            <div class="container-fluid" id="mcontainer">
-                <!--Header Modal-->
-                <div class="row mhead">
-
-                    <div class="col-lg-12 headitem ">
-                        <div id="thead">Neuen Tiereintrag erstellen</div>
-                        <div id="close">X</div>
-                    </div>
-                </div>
-
-                <div class="row rowbottom rowtop">
-                    <div class="col-lg-3 titel">
-                        Name des Tieres *
-                    </div>
-                    <div class="col-lg-8">
-                        <input type="text" class="input" id="name" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row rowbottom">
-                    <div class="col-lg-3 titel">
-                        Art des Tieres *
-                    </div>
-                    <div class="col-lg-8">
-                        <input type="text" class="input" id="art" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row rowbottom">
-                    <div class="col-lg-3 titel">
-                        Rasse des Tieres
-                    </div>
-                    <div class="col-lg-8">
-                        <input type="text" class="input" id="rasse" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row rowbottom">
-                    <div class="col-lg-3 titel">
-                        Wohnort *
-                    </div>
-                    <div class="col-lg-8">
-                        <input type="text" class="input" id="wohn" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row rowbottom">
-                    <div class="col-lg-3 titel">
-                        E-Mail *
-                    </div>
-                    <div class="col-lg-8">
-                        <input type="text" class="input" id="email" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3 titel">
-                        Zeitraum *
-                    </div>
-                </div>
-                <div class="row rowbottom">
-                    <div class="col-lg-1 vombis">
-                        Vom
-                    </div>
-                    <div class="col-lg-4">
-                        <input type="date" class="input" id="vom" autocomplete="off" />
-                    </div>
-                    <div class="col-lg-1 vombis">
-                        Bis
-                    </div>
-                    <div class="col-lg-4">
-                        <input type="date" class="input itest" id="bis" autocomplete="off" />
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-lg-11 titel">
-                        Passwort zum Löschen des Eintrags *
-                    </div>
-                </div>
-                <div class="row rowbottom">
-                    <div class="col-lg-12">
-                        <input type="password" class="input2" id="password" autocomplete="off" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-5 titel">
-                        Zusätzliche Anmerkungen
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <textarea class="input3" id="comment"></textarea>
-                    </div>
-                </div>
-                <div class = "anmerkung">*-Felder sind Pflichtfelder!</div>
-
-                <div id="btnab"><button class="btn" id="submitBtn"><div class="ab">Abschicken</div></button></div>
-
-
-
-            </div>
-
-
-
+        <div>
+          <div class="entryt" id="rasse1">Rasse:</div> $Rasse1$
         </div>
+        <div>
+          <div class="entryt" id="wohnort1">Wohnort:</div> $Wohnort1$
+        </div>
+        <div>
+          <div class="entryt" id="email1">Email:</div> $Email1$
+        </div>
+        <div>
+          <div class="entryt">Zeitraum:</div>
+        </div>
+        <div id="zeitraum1">Vom $vom1$ bis $bis1$</div>
+        <div>
+          <div class="entryt">Kommentar:</div>
+        </div>
+        <div class="entrycomment" id="kommentar1">$kommentar1$</div>
+        <div class="loeschen" id="loesch1" onclick="loeschfunc(this.id)">Eintrag Löschen<div id="ids">$ID1$</div>
+        </div>
+      </div>
+      <div class="col-lg-5 entry2" id="eintrag2">
+        <div class="entryhead" id="name2">$Name2$</div>
+        <div>
+          <div class="entryt" id="art2">Art:</div> $Art2$
+        </div>
+        <div>
+          <div class="entryt" id="rasse2">Rasse:</div> $Rasse2$
+        </div>
+        <div>
+          <div class="entryt" id="wohnort2">Wohnort:</div> $Wohnort2$
+        </div>
+        <div>
+          <div class="entryt" id="email2">Email:</div> $Email2$
+        </div>
+        <div>
+          <div class="entryt">Zeitraum:</div>
+        </div>
+        <div id="zeitraum2">Vom $vom2$ bis $bis2$</div>
+        <div>
+          <div class="entryt">Kommentar:</div>
+        </div>
+        <div class="entrycomment" id="kommentar2">$kommentar2$</div>
+        <div class="loeschen" id="loesch2" onclick="loeschfunc(this.id)">Eintrag Löschen<div id="ids">$ID2$</div>
+        </div>
+      </div>
     </div>
-    <footer>
-        <div id="fusszeile" class="row">
+  </template>
 
-            <div class="footer">
-                <ul>
-                    <li>&copy;</li>
-                    <li>Kontakt</li>
-                    <li>Impressum</li>
-                </ul>
+  <template id="tnoentry">
+    <div class="noentry">
+      Bisher wurde noch kein Eintrag hinzugefügt.
+    </div>
+  </template>
+  <main>
+
+    <div class="headline">
+      <button data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f"/></button>
+      <div class="ausrichtung">
+        <button id="hinzu" class="btn2">Eintrag hinzufügen</button>
+      </div>
+
+    </div>
+
+    <!--Michele Filter Code-->
+    <div id="filter" class="collapse">
+    <div class="filter-block">
+        <form class="form-horizontal" action="">
+            <div class="row">
+                <div id="mitBorder" class="col-sm-4">
+                    <h3>Tier:</h3>
+                    <div class="checkbox"><label><input type="checkbox" rel="hund"/> Hund</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="katze"/> Katze</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="vogel"/> Vogel</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="hase"/> Hase</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete"/> Schildkr&oumlte</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges"/> Sonstiges</label></div>
+                </div>
             </div>
+            <div class="row">
+                <div id="mitBorder" class= "col-sm-4">
+                    <h3>Datum:</h3>
+                    <label for="suche"> Datum w&aumlhlen: </label>
+                  <input type="search" id="suche" placeholder = "Datum..." >
+                </div>
+            </div>
+            <div class="row">
+                <div id="mitBorder" class= "col-sm-4">
+                    <h3>Ort:</h3>
+                  <label for="suche"> Ort eingeben: </label>
+                  <input type="search" id="suche" placeholder = "Ort..." >
+                </div>
+            </div>
+            <div class="row">
+                <div id="mitBorder" class= "col-sm-4">
+                    <label>... Tiere wurden gefunden</label>
+                </div>
+            </div>
+            <div class="row">
+                <div id="mitBorder" class= "col-sm-4">
+                    <button type="button" id="filtern">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Mathis Code-->
+    <div id="noentrydiv"></div>
+    <div class="container" id="eintrag"></div>
+    <div id="hmodal" class="modal">
+      <div class="modal-content" id="attribute">
+        <!--Bootstrap CSS Grid -->
+        <div class="container-fluid" id="mcontainer">
+          <!--Header Modal-->
+          <div class="row mhead">
+
+            <div class="col-lg-12 headitem ">
+              <div id="thead">Neuen Tiereintrag erstellen</div>
+              <div id="close">X</div>
+            </div>
+          </div>
+
+          <div class="row rowbottom rowtop">
+            <div class="col-lg-3 titel">
+              Name des Tieres *
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="input" id="name" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row rowbottom">
+            <div class="col-lg-3 titel">
+              Art des Tieres *
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="input" id="art" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row rowbottom">
+            <div class="col-lg-3 titel">
+              Rasse des Tieres
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="input" id="rasse" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row rowbottom">
+            <div class="col-lg-3 titel">
+              Wohnort *
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="input" id="wohn" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row rowbottom">
+            <div class="col-lg-3 titel">
+              E-Mail *
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="input" id="email" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 titel">
+              Zeitraum *
+            </div>
+          </div>
+          <div class="row rowbottom">
+            <div class="col-lg-1 vombis">
+              Vom
+            </div>
+            <div class="col-lg-4">
+              <input type="date" class="input" id="vom" autocomplete="off" />
+            </div>
+            <div class="col-lg-1 vombis">
+              Bis
+            </div>
+            <div class="col-lg-4">
+              <input type="date" class="input itest" id="bis" autocomplete="off" />
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-11 titel">
+              Passwort zum Löschen des Eintrags *
+            </div>
+          </div>
+          <div class="row rowbottom">
+            <div class="col-lg-12">
+              <input type="password" class="input2" id="password" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-5 titel">
+              Zusätzliche Anmerkungen
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <textarea class="input3" id="comment"></textarea>
+            </div>
+          </div>
+          <div class="anmerkung">*-Felder sind Pflichtfelder!</div>
+
+          <div id="btnab"><button class="btn" id="submitBtn">
+              <div class="ab">Abschicken</div>
+            </button></div>
+
+
 
         </div>
 
-    </footer>
+
+
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div id="fusszeile" class="row">
+
+      <div class="footer">
+        <ul>
+          <li>&copy;</li>
+          <li>Kontakt</li>
+          <li>Impressum</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </footer>
 </body>
 
 

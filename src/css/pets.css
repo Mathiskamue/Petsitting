@@ -40,10 +40,14 @@ header {
 
 /*Hinzufügen-Button*/
 .headline{
+
     width: 100%;
     border-bottom: 2px solid black;
     margin-bottom: 3%;
-    text-align: right;
+
+}
+.ausrichtung{
+  display: inline;
 }
 .btn2 {
     color: white;
@@ -56,7 +60,14 @@ header {
 }
 
 /* Eintrag */
-
+#noentrydiv{
+    display: none;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: gray;
+    min-height: 50%;
+}
 
 .entry1, .entry2{
     border: 5px solid #4CAF50;
@@ -222,6 +233,8 @@ header {
 .btn:hover {
     color: black;
 }
+
+
 
 @media (min-width: 1000px) {
 

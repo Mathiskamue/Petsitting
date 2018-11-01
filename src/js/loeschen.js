@@ -1,4 +1,4 @@
-async function reply_click(clicked_id) {
+async function loeschfunc(clicked_id) {
   let password = prompt("Bitte geben Sie ihr Passwort ein:");
   let ref = firebase.database().ref("eintrag");
   ref.once("value")
@@ -28,6 +28,8 @@ async function reply_click(clicked_id) {
 
             ref.child(zahl).remove();
             ref.child("highest").set(zahl - 1);
+
+
           } else {
 
           }
@@ -36,4 +38,9 @@ async function reply_click(clicked_id) {
       }
 
     });
+
+
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
