@@ -50,3 +50,6 @@ div{
 .white:hover{
     color:blue;
 }
+.row{
+    margin: 0;
+}
