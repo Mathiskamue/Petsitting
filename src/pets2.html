@@ -5,7 +5,7 @@
     <script src="js/pets.js"></script>
     <link rel="stylesheet" href="css/pets2.css" />
     <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
-
+    <link rel="stylesheet" href="css/Filter.css"/>
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
     <script>
             // Initialize Firebase
@@ -38,6 +38,7 @@
                     <img src="Bilder/filter1.png" width="50" alt="filter" />
                 </div>
             </a>
+
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button> -->
@@ -92,7 +93,7 @@
                 <div><div class="entryt">Wohnort:</div> $Wohnort2$</div>
                 <div><div class="entryt">Email:</div> $Email2$</div>
                 <div><div class="entryt">Zeitraum:</div></div>
-                <div>Vom $vom2$ bis $bis2$</div> 
+                <div>Vom $vom2$ bis $bis2$</div>
                 <div><div class="entryt">Kommentar:</div></div>
                 <div class="entrycomment">$kommentar2$</div>
                 <div class="loeschen" id="loesch">Eintrag Löschen<div id="ids">$ID2$</div></div>
@@ -100,8 +101,13 @@
         </div>
     </template>
 
-
     <div class="headline"><button id="hinzu" class="btn2">Eintrag hinzufügen</button></div>
+
+    <!--Filter-->
+
+
+
+
     <button class="btn2" id="tester">Tester</button>
     <div class="container" id="eintrag">
 
@@ -223,6 +229,7 @@
 
         </div>
     </div>
+    
     <footer>
         <div id="fusszeile" class="row">
 
