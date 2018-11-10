@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <script src="js/pets.js"></script>
   <script src="js/loeschen.js"></script>
+  <script src="js/filter.js"></script>
   <link rel="stylesheet" href="css/pets.css" />
   <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/Filter.css"/>
@@ -144,26 +145,26 @@
             <div class="row">
                 <div id="mitBorder" class="col-sm-4">
                     <h3>Tier:</h3>
-                    <div class="checkbox"><label><input type="checkbox" rel="hund"/> Hund</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="katze"/> Katze</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="vogel"/> Vogel</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="hase"/> Hase</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete"/> Schildkr&oumlte</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges"/> Sonstiges</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="hund" id="hund"/> Hund</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="katze" id="katze"/> Katze</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="vogel" id="vogel"/> Vogel</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="hase" id="hase"/> Hase</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete" id="schildkroete"/> Schildkr&oumlte</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges" id="sonstiges"/> Sonstiges</label></div>
                 </div>
             </div>
             <div class="row">
                 <div id="mitBorder" class= "col-sm-4">
                     <h3>Datum:</h3>
                     <label for="suche"> Datum w&aumlhlen: </label>
-                  <input type="search" id="suche" placeholder = "Datum..." >
+                  <input type="search" class="suche" id="datumsuche" placeholder = "Datum..." >
                 </div>
             </div>
             <div class="row">
                 <div id="mitBorder" class= "col-sm-4">
                     <h3>Ort:</h3>
                   <label for="suche"> Ort eingeben: </label>
-                  <input type="search" id="suche" placeholder = "Ort..." >
+                  <input type="search" class="suche" id="ortsuche" placeholder = "Ort..." >
                 </div>
             </div>
             <div class="row">
@@ -194,8 +195,26 @@
 
 
     <!--Mathis Code-->
+
+    <!--An dieser Stelle Templates einfügen-->
+    <!--keine Einträge-->
     <div id="noentrydiv"></div>
+    <!--Einträge-->
     <div class="container" id="eintrag"></div>
+    <!--Filter-->
+    <div id="filteransicht">
+      <div class="filterheader">
+        <button class="btn3" id="zuruecksetzen">Zurücksetzen</button>
+        <div id="suchergebnisse">Es wurden $Zahl$ Ergebnisse gefunden</div>
+      </div>
+      <div class="container" id="gefiltert"></div>
+      <div id="noresult"></div>
+    </div>
+
+
+
+
+
     <div id="hmodal" class="modal">
       <div class="modal-content" id="attribute">
         <!--Bootstrap CSS Grid -->

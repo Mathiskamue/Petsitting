@@ -1,26 +1,19 @@
-/*Thomas Code für Header und Footer*/
+
 html{
     overflow-x: hidden;
 }
 
-/* Mathis CSS-code*/
+
 /* Body */
 /* Header */
-.white {
-    color: white;
-}
 
-.white:hover {
-    color: blue;
-    font-size: 175%;
-}
 
 /*Hinzufügen-Button*/
 .headline{
 
     width: 100%;
     border-bottom: 2px solid black;
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 
 }
 .ausrichtung{
@@ -34,6 +27,32 @@ html{
     margin-bottom: 3px;
     width: 40%;
     border-radius: 20px;
+}
+
+/*Filter*/
+#filteransicht{
+  display: none;
+  min-height: 50%;
+}
+.filterheader{
+  margin-bottom: 2%;
+}
+
+.btn3{
+  color: white;
+  background-color: #ea0000;
+  font-size: 1.8em;
+  margin-right: 2%;
+  margin-bottom: 3px;
+  width: 30%;
+  border-radius: 20px;
+}
+#suchergebnisse{
+  display: inline;
+  font-size: 1.6em;
+  margin-left: 10%;
+  font-style: italic;
+
 }
 
 /* Eintrag */
