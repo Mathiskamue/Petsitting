@@ -26,9 +26,11 @@ window.addEventListener("load", function() {
 
 
 
-  filtern.addEventListener("click", function() {
+  filtern.addEventListener("click", async function() {
+
     eintrag.style.display = "none";
     filteransicht.style.display = "block";
+    document.getElementById("gefiltert").innerHTML = "";
     let ort = false;
     let datum = false;
     let tiere = [];
@@ -56,16 +58,31 @@ window.addEventListener("load", function() {
     if (datumsuche.value != "") {
       datum = true;
     }
-    addElement(tiere, ort, datum);
+    await addElement(tiere, ort, datum);
+    if(document.getElementById("eintrag2")==true){
+      document.getElementById("eintrag2").style.display = "none";
+    }
+
 
 
 
   });
 
-  function addElement(tiere, ort, datum) {
+  async function addElement(tiere, ort, datum) {
     if (tiere.length != 0) {
-      for (let i = 1; i <= tiere.length; i++) {
+      let ergebnisse = 0;
+      for (let i = 0; i < tiere.length; i++) {
+      ergebnisse +=  await finden(tiere[i], ort, datum);
+      }
 
+      suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("$Zahl$", ergebnisse);
+      suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace(/[0-9]+/, ergebnisse);
+      if (ergebnisse == 1) {
+        suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurden", "wurde");
+        suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnisse", "Ergebnis");
+      } else {
+        suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurde ", "wurden ");
+        suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnis ", "Ergebnisse ");
       }
     } else if (ort == true) {
       findenOrtDatum(ort, datum);
@@ -77,7 +94,701 @@ window.addEventListener("load", function() {
   }
 
 
-  function finden(tier, ort, datum) {
+  async function finden(tier, ort, datum) {
+
+    let ergebnisse = 0;
+    if (tier != "Sonstiges") {
+
+      if (datum == true && ort == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      } else if (datum == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      } else if (ort == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+
+          }
+        }
+      } else{
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val()==tier) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      }
+      return ergebnisse;
+    } else {
+      if (datum == true && ort == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      } else if (datum == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      } else if (ort == true) {
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value) {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte" && snapshot.child(zaehler).child("wohnort").val() == ortsuche.value) {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            alert("ort");
+            document.getElementById("eintrag2").style.display = "none";
+          }
+        }
+      } else{
+
+        let ref = firebase.database().ref("eintrag");
+        let snapshot = await ref.once("value");
+        let zahl = snapshot.child("highest").val();
+        let zaehler = 1;
+        while (zaehler <= zahl) {
+          let dummy = document.createElement("div");
+          dummy.innerHTML = tentry;
+          let zahl1;
+          let zahl2;
+          let keinzweitereintrag = false;
+          let hinzugefuegt = false;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte") {
+              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+              zahl1 = zaehler;
+              hinzugefuegt = true;
+              ergebnisse++;
+              break;
+            } else {
+              zaehler++;
+            }
+          }
+          zaehler++;
+          while (zaehler <= zahl) {
+            if (snapshot.child(zaehler).child("art").val() != "Hund" && snapshot.child(zaehler).child("art").val() != "Katze" && snapshot.child(zaehler).child("art").val() != "Vogel" && snapshot.child(zaehler).child("art").val() != "Hase" && snapshot.child(zaehler).child("art").val() != "Schildkröte") {
+
+              dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(zaehler).child("name").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(zaehler).child("art").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(zaehler).child("rasse").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort2$", snapshot.child(zaehler).child("wohnort").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$Email2$", snapshot.child(zaehler).child("email").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$vom2$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
+              dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
+              zahl2 = zaehler;
+              ergebnisse++;
+              zaehler++;
+              break;
+            } else if (zaehler == zahl) {
+              keinzweitereintrag = true;
+              zaehler++;
+            } else {
+              zaehler++;
+            }
+          }
+          if (hinzugefuegt == true) {
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+
+            if (keinzweitereintrag == false) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            }
+            if (keinzweitereintrag == true) {
+              document.getElementById("eintrag2").style.display = "none";
+            }
+          }
+        }
+      }
+      return ergebnisse;
+    }
+
+
 
   }
   async function findenOrtDatum(ort, datum) {
@@ -96,19 +807,19 @@ window.addEventListener("load", function() {
         let hinzugefuegt = false;
         while (zaehler <= zahl) {
           if (snapshot.child(zaehler).child("wohnort").val() == ortsuche.value && (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value)) {
-              dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
-              dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
-              zahl1 = zaehler;
-              hinzugefuegt = true;
-              ergebnisse++;
-              break;
+            dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+            dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+            zahl1 = zaehler;
+            hinzugefuegt = true;
+            ergebnisse++;
+            break;
           } else {
             zaehler++;
           }
@@ -130,17 +841,15 @@ window.addEventListener("load", function() {
             ergebnisse++;
             zaehler++;
             break;
-          }
-          else if(zaehler == zahl){
-            keinzweitereintrag=true;
+          } else if (zaehler == zahl) {
+            keinzweitereintrag = true;
             zaehler++;
-          }
-           else {
+          } else {
             zaehler++;
           }
         }
         if (hinzugefuegt == true) {
-          let noentry =document.getElementById("gefiltert");
+          let noentry = document.getElementById("gefiltert");
           noentry.appendChild(dummy);
 
           document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
@@ -153,7 +862,7 @@ window.addEventListener("load", function() {
           document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
 
-          if(keinzweitereintrag== false){
+          if (keinzweitereintrag == false) {
             document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
             document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
             document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -164,7 +873,7 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
             document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
           }
-          if(keinzweitereintrag==true){
+          if (keinzweitereintrag == true) {
             document.getElementById("eintrag2").style.display = "none";
           }
 
@@ -226,17 +935,15 @@ window.addEventListener("load", function() {
             ergebnisse++;
             zaehler++;
             break;
-          }
-          else if(zaehler == zahl){
-            keinzweitereintrag=true;
+          } else if (zaehler == zahl) {
+            keinzweitereintrag = true;
             zaehler++;
-          }
-           else {
+          } else {
             zaehler++;
           }
         }
         if (hinzugefuegt == true) {
-          let noentry =document.getElementById("gefiltert");
+          let noentry = document.getElementById("gefiltert");
           noentry.appendChild(dummy);
 
           document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
@@ -249,7 +956,7 @@ window.addEventListener("load", function() {
           document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
 
-          if(keinzweitereintrag== false){
+          if (keinzweitereintrag == false) {
             document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
             document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
             document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -260,7 +967,7 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
             document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
           }
-          if(keinzweitereintrag==true){
+          if (keinzweitereintrag == true) {
             document.getElementById("eintrag2").style.display = "none";
           }
 
@@ -274,10 +981,10 @@ window.addEventListener("load", function() {
     }
     suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("$Zahl$", ergebnisse);
     suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace(/[0-9]+/, ergebnisse);
-    if(ergebnisse==1){
+    if (ergebnisse == 1) {
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurden", "wurde");
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnisse", "Ergebnis");
-    }else{
+    } else {
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurde ", "wurden ");
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnis ", "Ergebnisse ");
     }
@@ -298,19 +1005,19 @@ window.addEventListener("load", function() {
       let hinzugefuegt = false;
       while (zaehler <= zahl) {
         if (snapshot.child(zaehler).child("zeitraum").child("Von").val() == datumsuche.value || snapshot.child(zaehler).child("zeitraum").child("Bis").val() == datumsuche.value) {
-            dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
-            dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
-            zahl1 = zaehler;
-            hinzugefuegt = true;
-            ergebnisse++;
-            break;
+          dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zaehler).child("name").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(zaehler).child("art").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(zaehler).child("rasse").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$Wohnort1$", snapshot.child(zaehler).child("wohnort").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$Email1$", snapshot.child(zaehler).child("email").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$vom1$", snapshot.child(zaehler).child("zeitraum").child("Von").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(zaehler).child("zeitraum").child("Bis").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(zaehler).child("kommentar").val());
+          dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(zaehler).child("ID").val());
+          zahl1 = zaehler;
+          hinzugefuegt = true;
+          ergebnisse++;
+          break;
         } else {
           zaehler++;
         }
@@ -332,17 +1039,15 @@ window.addEventListener("load", function() {
           ergebnisse++;
           zaehler++;
           break;
-        }
-        else if(zaehler == zahl){
-          keinzweitereintrag=true;
+        } else if (zaehler == zahl) {
+          keinzweitereintrag = true;
           zaehler++;
-        }
-         else {
+        } else {
           zaehler++;
         }
       }
       if (hinzugefuegt == true) {
-        let noentry =document.getElementById("gefiltert");
+        let noentry = document.getElementById("gefiltert");
         noentry.appendChild(dummy);
 
         document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
@@ -355,7 +1060,7 @@ window.addEventListener("load", function() {
         document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
         document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
 
-        if(keinzweitereintrag== false){
+        if (keinzweitereintrag == false) {
           document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
           document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
           document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -366,7 +1071,7 @@ window.addEventListener("load", function() {
           document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
           document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
         }
-        if(keinzweitereintrag==true){
+        if (keinzweitereintrag == true) {
           document.getElementById("eintrag2").style.display = "none";
         }
 
@@ -379,10 +1084,10 @@ window.addEventListener("load", function() {
     }
     suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("$Zahl$", ergebnisse);
     suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace(/[0-9]+/, ergebnisse);
-    if(ergebnisse==1){
+    if (ergebnisse == 1) {
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurden", "wurde");
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnisse", "Ergebnis");
-    }else{
+    } else {
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("wurde ", "wurden ");
       suchergebnisse.innerHTML = suchergebnisse.innerHTML.replace("Ergebnis ", "Ergebnisse ");
     }
