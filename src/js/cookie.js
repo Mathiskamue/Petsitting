@@ -1,14 +1,17 @@
+window.addEventListener("load", function() {
+
 
 let vfooter = document.getElementById(fusszeile);
+let apDiv = document.createElement("div");
+let apH1 = document.createElement("h1");
+let apP   = document.createElement("p");
 
-let createContent = () => {
+let apBut = document.createElement("button");
 
 
-    let apDiv = document.createElement("div");
-    let apH1 = document.createElement("h1");
-    let apP   = document.createElement("p");
 
-    let apBut = document.createElement("button");
+
+
     apBut.setAttribute('id','center');
 
     let apHead = document.createTextNode("Diese Webseite verwendet Cookies");
@@ -32,5 +35,5 @@ let createContent = () => {
         document.body.removeChild(apDiv);
     }
     });
-console.log(allo);
-};
+
+});
