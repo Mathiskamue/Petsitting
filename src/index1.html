@@ -2,44 +2,61 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <!-- Start Cookie Plugin -->
-<script type="text/javascript">
-  window.CookieHinweis_options = {
-  message: 'Website Tutor nutzt Cookies, um bestmögliche Funktionalität bieten zu können.',
-  agree: 'Ok, verstanden',
-  learnMore: 'Mehr Infos',
-  link: 'https://website-tutor.com/datenschutz/',
-  theme: 'dunkel-oben'
- };
-</script>
-<style media="screen">
-.cc_container .cc_btn {
-background-color: #e4e4e4 !important; /* Farbe des Buttons */
-color: #000 !important; /* Textfarbe des Buttons */
-}
 
-.cc_container {
-background: #1f6888 !important; /* Hintergrundfarbe des gesamten Bereichs */
-color: #fdfdfd !important; /* Schriftfarbe des gesamten Bereichs */
-}
-
-.cc_container a {
-color: #31a8f0 !important; /* Textlink-Farbe "Mehr Infos" */
-}
-</style>
-<script type="text/javascript" src="https://s3.eu-central-1.amazonaws.com/website-tutor/cookiehinweis/script.js
-"></script>
-<!-- Ende Cookie Plugin -->
     <!-- Bootstrap-->
     <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="Bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/cookie.js"></script>
+
+    <script src="cookie.js"></script>
     <!-- Stylesheet-->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/header_footer.css" />
+
     <title>PetSitting</title>
-<body>
+<script>
+window.addEventListener("load", function() {
+let vfooter = document.getElementById(fusszeile);
+
+let createContent = () => {
+
+
+    let apDiv = document.createElement("div");
+    let apH1 = document.createElement("h1");
+    let apP   = document.createElement("p");
+
+    let apBut = document.createElement("button");
+    apBut.setAttribute('id','center');
+
+    let apHead = document.createTextNode("Diese Webseite verwendet Cookies");
+    let apMain = document.createTextNode("Wir verwenden Cookies, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anbieten zu können und die Zugriffe auf unsere Website zu analysieren. Außerdem geben wir Informationen zu Ihrer Verwendung unserer Website an unsere Partner für soziale Medien, Werbung und Analysen weiter. Unsere Partner führen diese Informationen möglicherweise mit weiteren Daten zusammen, die Sie ihnen bereitgestellt haben oder die sie im Rahmen Ihrer Nutzung der Dienste gesammelt haben. Sie geben Einwilligung zu unseren Cookies, wenn Sie unsere Webseite weiterhin nutzen.");
+
+    apDiv.style.backgroundColor = "red";
+    apDiv.style.border="thick solid black";
+    apDiv.style.textAlign="center";
+
+    document.body.appendChild(apDiv);
+    apDiv.appendChild(apH1);
+    apH1.appendChild(apHead);
+    apDiv.appendChild(apMain);
+    apDiv.appendChild(apP);
+    apP.appendChild(apBut);
+
+    document.getElementById("center").addEventListener("click",()=>{
+    let active = true;
+
+    if (active === true){
+        document.body.removeChild(apDiv);
+    }
+    });
+};
+});
+
+</script>
+</head>
+<body onload="createContent()">
     <header>
         <div class="jumbotro-text-center" style="margin-bottom:0">
             <img id="hunderassen"src="Bilder/hunderassen2.gif" alt="banner" />
@@ -102,7 +119,7 @@ color: #31a8f0 !important; /* Textlink-Farbe "Mehr Infos" */
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-8">
-                    <section class="container-fluid">
+                    <section id="kar"class="container-fluid">
                         <div id="carousel-screenshots" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel-screenshots" data-slide-to="0" class="active"></li>
@@ -256,4 +273,7 @@ color: #31a8f0 !important; /* Textlink-Farbe "Mehr Infos" */
         </div>
     </footer>
 </body>
+
+
+
 </html>
