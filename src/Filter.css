@@ -1,25 +1,25 @@
 #mitBorder{
-    border: 1px solid;
+    border: 2px solid;
+    border-radius: 0.5em;
+    border-color: #228B22;
 }
 
-button{
-    background-color: #000000;
-}
+
 #f{
-    width: 100%;
-    height: 100%;
+    width: 7em;
+    height: 4em;
 }
-#suche {
-	width: 3em;
+.suche {
+	width: 7em;
 	border: 1px solid;
 	border-radius: 0.5em;
 	font-size: 1em;
 	transition: width 0.5s ease-in-out;
 }
 
-#suche:focus {
+.suche:focus {
 	font-size: 1.2em;
-	width: 35%;
+	width: 15%;
 }
 
 h3{
@@ -29,4 +29,14 @@ h3{
 #hundkatze{
     width: 100%;
     height:10em;
+}
+#b{
+    border-radius: 0.5em;
+    background-color: #FFFFFF;
+}
+#filtern{
+    width:7em;
+    height: 3em;
+    border-radius: 1em;
+    background-color: #228B22;
 }

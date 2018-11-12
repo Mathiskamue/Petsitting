@@ -7,7 +7,7 @@
   <script src="js/filter.js"></script>
   <link rel="stylesheet" href="css/pets.css" />
   <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/Filter.css"/>
+  <link rel="stylesheet" href="Filter.css"/>
   <link rel="stylesheet" href="css/header_footer.css"/>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -131,10 +131,13 @@
   <main>
 
     <div class="headline">
-      <button data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f"/></button>
-      <div class="ausrichtung">
-        <button id="hinzu" class="btn2">Eintrag hinzufügen</button>
-      </div>
+                <button id="b" data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f"/></button>
+                <div class="ausrichtung">
+                  <button id="hinzu" class="btn2">Eintrag hinzufügen</button>
+            </div>
+        </div>
+
+
 
     </div>
 
@@ -143,7 +146,7 @@
     <div class="filter-block">
         <form class="form-horizontal" action="">
             <div class="row">
-                <div id="mitBorder" class="col-sm-4">
+                <div id="mitBorder" class="col-sm-11">
                     <h3>Tier:</h3>
                     <div class="checkbox"><label><input type="checkbox" rel="hund" id="hund"/> Hund</label></div>
                     <div class="checkbox"><label><input type="checkbox" rel="katze" id="katze"/> Katze</label></div>
@@ -154,26 +157,21 @@
                 </div>
             </div>
             <div class="row">
-                <div id="mitBorder" class= "col-sm-4">
+                <div id="mitBorder" class= "col-sm-11">
                     <h3>Datum:</h3>
                     <label for="suche"> Datum w&aumlhlen: </label>
-                  <input type="search" class="suche" id="datumsuche" placeholder = "Datum..." >
+                  <input type="date" class="suche" id="datumsuche" placeholder = "Datum..." >
                 </div>
             </div>
             <div class="row">
-                <div id="mitBorder" class= "col-sm-4">
+                <div id="mitBorder" class= "col-sm-11">
                     <h3>Ort:</h3>
                   <label for="suche"> Ort eingeben: </label>
                   <input type="search" class="suche" id="ortsuche" placeholder = "Ort..." >
                 </div>
             </div>
             <div class="row">
-                <div id="mitBorder" class= "col-sm-4">
-                    <label>... Tiere wurden gefunden</label>
-                </div>
-            </div>
-            <div class="row">
-                <div id="mitBorder" class= "col-sm-4">
+                <div class= "col-sm-11">
                     <button type="button" id="filtern">Filter</button>
                 </div>
             </div>
