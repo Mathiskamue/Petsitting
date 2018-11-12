@@ -106,3 +106,13 @@ background-color: white;
             transform: rotate(360deg) scale(1);
   }
 }
+@media (max-width: 1000px){
+    #kar
+    {
+        display: none;
+
+
+    }
+    
+
+}
