@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <script src="js/pets.js"></script>
   <script src="js/loeschen.js"></script>
+  <script src="js/filter.js"></script>
   <link rel="stylesheet" href="css/pets.css" />
   <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/Filter.css"/>
+  <link rel="stylesheet" href="css/header_footer.css"/>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -33,42 +35,32 @@
 
   <!--Thomas Code -->
   <header>
-    <div class="jumbotro-text-center" style="margin-bottom:0">
-      <img id="hunderassen" src="Bilder/hunderassen.gif" alt="banner" />
-    </div>
-
-    <nav id="filter" class="navbar navbar-expand-sm">
-      <a class="navbar-brand" href="#">
-        <div>
-          <img src="Bilder/filter1.png" width="50" alt="filter" />
-        </div>
-      </a>
-      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button> -->
-      <!--    <div class="collapse navbar-collapse" id="navi"> -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a id="navi-home" class="nav-link" href="index.html">
-            <div class="white">
-              Home
-            </div>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navi-pets" class="nav-link" href="pets.html">
-            <div class="white">Pets</div>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navi-aboutus" class="nav-link" href="AboutUs.html">
-            <div class="white">About Us</div>
-          </a>
-        </li>
-      </ul>
+      <div class="jumbotro-text-center" style="margin-bottom:0">
+          <img id="hunderassen"src="Bilder/hunderassen2.gif" alt="banner" />
       </div>
-    </nav>
+      <!-- Navigation -->
+      <section id="navigation" class="container-fluid">
+          <div id="nav-item"class="row">
+              <div class="col-sm-2">
+                  <img  src="Bilder/filter1.png" width="50"  alt="filter" />
+              </div>
+              <div class="col-sm-2">
+                  <a id="navi-home"class="nav-link" href="index1.html">Home</a>
+              </div>
+              <div class="col-sm-2">
+                  <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
+              </div>
+              <div class="col-sm-2">
+                  <a id="navi-aboutus"class="nav-link" href="AboutUs.html">AboutUs</a>
+              </div>
+              <div class="col-sm-2">
 
+              <div class="col-sm-2">
+              </div>
+
+          </div>
+          </div>
+      </section>
   </header>
 
 
@@ -153,26 +145,26 @@
             <div class="row">
                 <div id="mitBorder" class="col-sm-4">
                     <h3>Tier:</h3>
-                    <div class="checkbox"><label><input type="checkbox" rel="hund"/> Hund</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="katze"/> Katze</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="vogel"/> Vogel</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="hase"/> Hase</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete"/> Schildkr&oumlte</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges"/> Sonstiges</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="hund" id="hund"/> Hund</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="katze" id="katze"/> Katze</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="vogel" id="vogel"/> Vogel</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="hase" id="hase"/> Hase</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete" id="schildkroete"/> Schildkr&oumlte</label></div>
+                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges" id="sonstiges"/> Sonstiges</label></div>
                 </div>
             </div>
             <div class="row">
                 <div id="mitBorder" class= "col-sm-4">
                     <h3>Datum:</h3>
                     <label for="suche"> Datum w&aumlhlen: </label>
-                  <input type="search" id="suche" placeholder = "Datum..." >
+                  <input type="search" class="suche" id="datumsuche" placeholder = "Datum..." >
                 </div>
             </div>
             <div class="row">
                 <div id="mitBorder" class= "col-sm-4">
                     <h3>Ort:</h3>
                   <label for="suche"> Ort eingeben: </label>
-                  <input type="search" id="suche" placeholder = "Ort..." >
+                  <input type="search" class="suche" id="ortsuche" placeholder = "Ort..." >
                 </div>
             </div>
             <div class="row">
@@ -203,8 +195,26 @@
 
 
     <!--Mathis Code-->
+
+    <!--An dieser Stelle Templates einfügen-->
+    <!--keine Einträge-->
     <div id="noentrydiv"></div>
+    <!--Einträge-->
     <div class="container" id="eintrag"></div>
+    <!--Filter-->
+    <div id="filteransicht">
+      <div class="filterheader">
+        <button class="btn3" id="zuruecksetzen">Zurücksetzen</button>
+        <div id="suchergebnisse">Es wurden $Zahl$ Ergebnisse gefunden</div>
+      </div>
+      <div class="container" id="gefiltert"></div>
+      <div id="noresult"></div>
+    </div>
+
+
+
+
+
     <div id="hmodal" class="modal">
       <div class="modal-content" id="attribute">
         <!--Bootstrap CSS Grid -->
