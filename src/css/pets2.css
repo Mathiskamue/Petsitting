@@ -84,6 +84,9 @@ header {
     word-wrap: break-word;
     overflow: auto;
 }
+.inline{
+    display: inline;
+}
 .loeschen{
     text-align: right;
     margin-right: 1%;

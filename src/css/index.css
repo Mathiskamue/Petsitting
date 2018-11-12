@@ -1,17 +1,11 @@
-
 button
 {
     position: relative;
     display: inline-flex;
 }
-li , a , .navi-home
+a , .navi-home
 {
     color: white;
-}
-#hunderassen
-{
-    width:100%;
-    height:20em;
 }
 
 #background
@@ -27,7 +21,7 @@ li , a , .navi-home
     margin: 5em;
 }
 #blog
- {
+{
 align-content: center;
 justify-content: center;
 background-color: white;
@@ -41,17 +35,15 @@ background-color: white;
     border-bottom: 2px;
     border-color: white;
 }
-#fusszeile , #navigation , #navi
+#navigation , #navi
 {
     background-color: black;
 }
 .row
 {
-
     margin: 0;
     width: 100%;
     height:100%;
-
 }
 .box {
 
@@ -71,15 +63,11 @@ background-color: white;
 {
     transform: translate(200px, 150px) rotate(20deg);
 }
-.navi-link:hover
+.nav-link:hover
 {
     font-size:175%;
 }
-.footer  li
-{
-    display: inline; /* li nebeneinander anzeigen */
-    list-style-type: none; /* ohne Aufzählungspunkte */
-}
+
 .img-fluid
 {
     border: 20px solid #999;
@@ -106,7 +94,7 @@ background-color: white;
   animation: spinny 5s linear infinite;
 
 }
-}
+
 @-webkit-keyframes spinny {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
