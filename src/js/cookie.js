@@ -8,10 +8,6 @@ let apP   = document.createElement("p");
 
 let apBut = document.createElement("button");
 
-
-
-
-
     apBut.setAttribute('id','center');
 
     let apHead = document.createTextNode("Diese Webseite verwendet Cookies");
@@ -20,6 +16,7 @@ let apBut = document.createElement("button");
     apDiv.style.backgroundColor = "red";
     apDiv.style.border="thick solid black";
     apDiv.style.textAlign="center";
+    apBut.style.cursor="pointer";
 
     document.body.appendChild(apDiv);
     apDiv.appendChild(apH1);
@@ -28,10 +25,12 @@ let apBut = document.createElement("button");
     apDiv.appendChild(apP);
     apP.appendChild(apBut);
 
-    document.getElementById("center").addEventListener("click",()=>{
-    let active = true;
 
-    if (active === true){
+    window.akt;
+    document.getElementById("center").addEventListener("click",()=>{
+    akt = true;
+
+    if (akt === true){
         document.body.removeChild(apDiv);
     }
     });
