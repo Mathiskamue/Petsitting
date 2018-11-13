@@ -206,7 +206,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -216,8 +219,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -288,7 +290,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -298,8 +303,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -370,7 +374,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -380,8 +387,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -452,7 +458,11 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -462,8 +472,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -539,7 +548,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -549,8 +561,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -638,7 +649,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -648,8 +662,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -737,7 +750,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -747,8 +763,6 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
 
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
@@ -820,7 +834,10 @@ window.addEventListener("load", function() {
             document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
             document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
             //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-            if (ergebnisse%2==0 || ergebnisse!=1) {
+            if (ergebnisse%2!=0 || ergebnisse==1) {
+              document.getElementById("eintrag2").classList.add("leer");
+
+            } else{
               document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
               document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
               document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -830,8 +847,7 @@ window.addEventListener("load", function() {
               document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
               document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
               document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-            } else{
-              document.getElementById("eintrag2").classList.add("leer");
+
             }
             //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
             //in pets.css:
@@ -909,7 +925,10 @@ window.addEventListener("load", function() {
           document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
           //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-          if (ergebnisse%2==0 || ergebnisse!=1) {
+          if (ergebnisse%2!=0 || ergebnisse==1) {
+            document.getElementById("eintrag2").classList.add("leer");
+
+          } else{
             document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
             document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
             document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -919,8 +938,7 @@ window.addEventListener("load", function() {
             document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
             document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
             document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-          } else{
-            document.getElementById("eintrag2").classList.add("leer");
+
           }
           //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
           //in pets.css:
@@ -991,7 +1009,10 @@ window.addEventListener("load", function() {
           document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
           //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-          if (ergebnisse%2==0 || ergebnisse!=1) {
+          if (ergebnisse%2!=0 || ergebnisse==1) {
+            document.getElementById("eintrag2").classList.add("leer");
+
+          } else{
             document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
             document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
             document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -1001,8 +1022,7 @@ window.addEventListener("load", function() {
             document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
             document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
             document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-          } else{
-            document.getElementById("eintrag2").classList.add("leer");
+
           }
           //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
           //in pets.css:
@@ -1076,7 +1096,10 @@ window.addEventListener("load", function() {
         document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
         document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
         //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-        if (ergebnisse%2==0 || ergebnisse!=1) {
+        if (ergebnisse%2!=0 || ergebnisse==1) {
+          document.getElementById("eintrag2").classList.add("leer");
+
+        } else{
           document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
           document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
           document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -1086,8 +1109,7 @@ window.addEventListener("load", function() {
           document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
           document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
           document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-        } else{
-          document.getElementById("eintrag2").classList.add("leer");
+
         }
         //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
         //in pets.css:
@@ -1159,7 +1181,10 @@ window.addEventListener("load", function() {
     document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
     document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
     //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-    if (ergebnisse%2==0 || ergebnisse!=1) {
+    if (ergebnisse%2!=0 || ergebnisse==1) {
+      document.getElementById("eintrag2").classList.add("leer");
+
+    } else{
       document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
       document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
       document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -1169,8 +1194,7 @@ window.addEventListener("load", function() {
       document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
       document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
       document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
-    } else{
-      document.getElementById("eintrag2").classList.add("leer");
+
     }
     //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
     //in pets.css:
