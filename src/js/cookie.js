@@ -16,7 +16,7 @@ let apBut = document.createElement("button");
     apDiv.style.backgroundColor = "red";
     apDiv.style.border="thick solid black";
     apDiv.style.textAlign="center";
-    apDiv.style.position="fixed";
+    // apDiv.style.position="fixed";
     apBut.style.cursor="pointer";
 
     document.body.appendChild(apDiv);
