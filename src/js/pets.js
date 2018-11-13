@@ -165,8 +165,18 @@ window.addEventListener("load", function() {
           document.getElementById("zeitraum1").id = snapshot.child(zahl).child("ID").val() + "zeitraum";
           document.getElementById("kommentar1").id = snapshot.child(zahl).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl).child("ID").val();
+
           //der zweite Eintrag wird unsichtbar gemacht
-          document.getElementById("eintrag2").style.display = "none";
+          document.getElementById("eintrag2").id = "ungerade";
+          document.getElementById("name2").id = "name";
+          document.getElementById("art2").id = "art";
+          document.getElementById("rasse2").id = "rasse";
+          document.getElementById("wohnort2").id = "wohnort";
+          document.getElementById("email2").id = "email";
+          document.getElementById("zeitraum2").id = "zeitraum";
+          document.getElementById("kommentar2").id = "kommentar";
+          document.getElementById("loesch2").id = "gehtnicht";
+          document.getElementById("ungerade").style.display = "none";
         }
       }
       else{

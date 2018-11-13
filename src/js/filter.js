@@ -1,3 +1,6 @@
+//!!!!!!!!!!!!!!!
+//Bitte Anmerkung zu Zeile 1139 function idchanger durchlesen
+//!!!!!!!!!!!!!!!
 window.addEventListener("load", function() {
   //Buttons
   let filtern = document.getElementById("filtern");
@@ -70,7 +73,7 @@ window.addEventListener("load", function() {
     //Mit dieser Funktion werden die gefundenen Ergebnisse herausgesucht und angezeigt
     //es werden das tiere[], ort und datum der Funktion addElement übergeben
     await addElement(tiere, ort, datum);
-    
+
   });
 
   async function addElement(tiere, ort, datum) {
@@ -183,7 +186,45 @@ window.addEventListener("load", function() {
           //Nun wird geprüft, ob es 1 oder 2 Ergebnisse gibt
           if (hinzugefuegt == true) {
             //hier werden mehrere Paramter übergeben, um die Funktion die gefunden Einträge anzeigen zu lassen
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -227,7 +268,45 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -271,7 +350,45 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -315,7 +432,46 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
+
           }
         }
       }
@@ -363,7 +519,45 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -424,7 +618,45 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -485,7 +717,46 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-          idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -529,7 +800,45 @@ window.addEventListener("load", function() {
             }
           }
           if (hinzugefuegt == true) {
-            idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+            //Datenbankreferenz aufbauen
+            let ref = firebase.database().ref("eintrag");
+
+            let snapshot = await ref.once("value");
+            //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+            let noentry = document.getElementById("gefiltert");
+            noentry.appendChild(dummy);
+            //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+            //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+            //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+            document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+            document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+            document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+            document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+            document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+            document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+            document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+            document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+            //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+            if (ergebnisse%2==0 || ergebnisse!=1) {
+              document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+              document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+              document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+              document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+              document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+              document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+              document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+              document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+              document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+            } else{
+              document.getElementById("eintrag2").classList.add("leer");
+            }
+            //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+            //in pets.css:
+            //.leer{
+            //  display: none;
+            // }
+            //damit kein Template angezeigt wird
           }
         }
       }
@@ -580,7 +889,45 @@ window.addEventListener("load", function() {
           }
         }
         if (hinzugefuegt == true) {
-          idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+          //Datenbankreferenz aufbauen
+          let ref = firebase.database().ref("eintrag");
+
+          let snapshot = await ref.once("value");
+          //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+          let noentry = document.getElementById("gefiltert");
+          noentry.appendChild(dummy);
+          //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+          //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+          //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+          document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+          document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+          document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+          document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+          document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+          document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+          document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+          document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+          document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+          //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+          if (ergebnisse%2==0 || ergebnisse!=1) {
+            document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+            document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+            document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+            document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+            document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+            document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+            document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+            document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+          } else{
+            document.getElementById("eintrag2").classList.add("leer");
+          }
+          //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+          //in pets.css:
+          //.leer{
+          //  display: none;
+          // }
+          //damit kein Template angezeigt wird
         }
       }
     }
@@ -624,7 +971,45 @@ window.addEventListener("load", function() {
           }
         }
         if (hinzugefuegt == true) {
-          idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+          //Datenbankreferenz aufbauen
+          let ref = firebase.database().ref("eintrag");
+
+          let snapshot = await ref.once("value");
+          //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+          let noentry = document.getElementById("gefiltert");
+          noentry.appendChild(dummy);
+          //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+          //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+          //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+          document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+          document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+          document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+          document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+          document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+          document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+          document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+          document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+          document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+          //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+          if (ergebnisse%2==0 || ergebnisse!=1) {
+            document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+            document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+            document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+            document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+            document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+            document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+            document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+            document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+            document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+          } else{
+            document.getElementById("eintrag2").classList.add("leer");
+          }
+          //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+          //in pets.css:
+          //.leer{
+          //  display: none;
+          // }
+          //damit kein Template angezeigt wird
         }
       }
     }
@@ -671,7 +1056,45 @@ window.addEventListener("load", function() {
         }
       }
       if (hinzugefuegt == true) {
-        idchanger(keinzweitereintrag, dummy, zahl1, zahl2);
+        //Datenbankreferenz aufbauen
+        let ref = firebase.database().ref("eintrag");
+
+        let snapshot = await ref.once("value");
+        //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
+        let noentry = document.getElementById("gefiltert");
+        noentry.appendChild(dummy);
+        //IDs der einzelnen Werte ändern, damit jedes Element eine eigene eindeutige ID bekommt, die sich aus der ID des Eintrags und einen Zusatzwort zusammensetzt
+        //Wird nicht wirklich gebraucht, aber wenn man vielleicht dieses Programm noch erweitern will, ist es eine nützliche und hilfreiche Absicherung
+        //Außerdem wird damit gewährleistet dass nicht doppelte IDs vorkommen
+        document.getElementById("eintrag1").id = snapshot.child(zahl1).child("ID").val() + "entry";
+        document.getElementById("name1").id = snapshot.child(zahl1).child("ID").val() + "name";
+        document.getElementById("art1").id = snapshot.child(zahl1).child("ID").val() + "art";
+        document.getElementById("rasse1").id = snapshot.child(zahl1).child("ID").val() + "rasse";
+        document.getElementById("wohnort1").id = snapshot.child(zahl1).child("ID").val() + "wohnort";
+        document.getElementById("email1").id = snapshot.child(zahl1).child("ID").val() + "email";
+        document.getElementById("zeitraum1").id = snapshot.child(zahl1).child("ID").val() + "zeitraum";
+        document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
+        document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
+        //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
+        if (ergebnisse%2==0 || ergebnisse!=1) {
+          document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
+          document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
+          document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
+          document.getElementById("rasse2").id = snapshot.child(zahl2).child("ID").val() + "rasse";
+          document.getElementById("wohnort2").id = snapshot.child(zahl2).child("ID").val() + "wohnort";
+          document.getElementById("email2").id = snapshot.child(zahl2).child("ID").val() + "email";
+          document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
+          document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
+          document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+        } else{
+          document.getElementById("eintrag2").classList.add("leer");
+        }
+        //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
+        //in pets.css:
+        //.leer{
+        //  display: none;
+        // }
+        //damit kein Template angezeigt wird
       }
 
     }
@@ -709,9 +1132,16 @@ window.addEventListener("load", function() {
     dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(zaehler).child("kommentar").val());
     dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(zaehler).child("ID").val());
   }
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //Eigentlich hatte ich diese Funktion definiert, damit ich nicht immer den selben Code überall stehen habe
+  //Leider kam es dadurch zu einem Fehler, dass die Ergebnisse genau andersrum angezeigt wurden, also das letzte Ergebnis zuerst
+  //Dies hat dann dazu geführt dass bei einer ungeraden Zahl an Ergebnissen das Problem aufgetreten ist dass neben dem 1. Element eines unsichtbar ist und in der nächsten zeile wieder 2 Elemente zu finden waren
+  //die Funktion ist 1:1 identisch mit den Blöcken oben
   async function idchanger(keinzweitereintrag, dummy, zahl1, zahl2) {
     //Datenbankreferenz aufbauen
     let ref = firebase.database().ref("eintrag");
+
     let snapshot = await ref.once("value");
     //an die richtige Stelle im HTMl den dummy anhängen mit den veränderten Werten
     let noentry = document.getElementById("gefiltert");
@@ -729,7 +1159,7 @@ window.addEventListener("load", function() {
     document.getElementById("kommentar1").id = snapshot.child(zahl1).child("ID").val() + "kommentar";
     document.getElementById("loesch1").id = snapshot.child(zahl1).child("ID").val();
     //Wenn es einen zweiten Eintrag gibt, auch hier die IDs der Werte ändern
-    if (keinzweitereintrag == false) {
+    if (ergebnisse%2==0 || ergebnisse!=1) {
       document.getElementById("eintrag2").id = snapshot.child(zahl2).child("ID").val() + "entry";
       document.getElementById("name2").id = snapshot.child(zahl2).child("ID").val() + "name";
       document.getElementById("art2").id = snapshot.child(zahl2).child("ID").val() + "art";
@@ -739,6 +1169,8 @@ window.addEventListener("load", function() {
       document.getElementById("zeitraum2").id = snapshot.child(zahl2).child("ID").val() + "zeitraum";
       document.getElementById("kommentar2").id = snapshot.child(zahl2).child("ID").val() + "kommentar";
       document.getElementById("loesch2").id = snapshot.child(zahl2).child("ID").val();
+    } else{
+      document.getElementById("eintrag2").classList.add("leer");
     }
     //Wenn es keinen zweiten Eintrag gibt, dann bekommt das Element die zusätzliche Klasse leer angehängt
     //in pets.css:
@@ -746,10 +1178,6 @@ window.addEventListener("load", function() {
     //  display: none;
     // }
     //damit kein Template angezeigt wird
-    if (keinzweitereintrag==true) {
-      document.getElementById("eintrag2").classList.add("leer");
-      document.getElementById("eintrag2").id = "";
-    }
   }
   function suchergebnis(ergebnisse) {
     //Damit die Anzahl der Suchergebnisse dargestellt wird auf der Website
