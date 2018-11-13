@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>PetSitting</title>
+  <title>PetSitting</title>
   <meta charset="utf-8" />
   <script src="js/pets.js"></script>
   <script src="js/loeschen.js"></script>
@@ -9,8 +9,8 @@
   <script src="js/cookie.js"></script>
   <link rel="stylesheet" href="css/pets.css" />
   <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/Filter.css"/>
-  <link rel="stylesheet" href="css/header_footer.css"/>
+  <link rel="stylesheet" href="css/Filter.css" />
+  <link rel="stylesheet" href="css/header_footer.css" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -34,42 +34,45 @@
 </head>
 
 <body>
-
-  <!--Thomas Code -->
+  <!--+++++++++++++++++++-->
+  <!--Thomas Header Code -->
+  <!--+++++++++++++++++++-->
   <header>
-      <div class="jumbotro-text-center" style="margin-bottom:0">
-          <img id="hunderassen"src="Bilder/hunderassen2.gif" alt="banner" />
+    <div class="jumbotro-text-center" style="margin-bottom:0">
+      <img id="hunderassen" src="Bilder/hunderassen2.gif" alt="banner" />
+    </div>
+    <!-- Navigation -->
+    <section id="navigation" class="container-fluid">
+      <div id="nav-item" class="row">
+        <div class="col-sm-2">
+          <img src="Bilder/filter1.png" width="50" alt="filter" />
+        </div>
+        <div class="col-sm-2">
+          <a id="navi-home" class="nav-link" href="index1.html">Home</a>
+        </div>
+        <div class="col-sm-2">
+          <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
+        </div>
+        <div class="col-sm-2">
+          <a id="navi-aboutus" class="nav-link" href="AboutUs.html">AboutUs</a>
+        </div>
+        <div class="col-sm-2">
+
+          <div class="col-sm-2">
+          </div>
+
+        </div>
       </div>
-      <!-- Navigation -->
-      <section id="navigation" class="container-fluid">
-          <div id="nav-item"class="row">
-              <div class="col-sm-2">
-                  <img  src="Bilder/filter1.png" width="50"  alt="filter" />
-              </div>
-              <div class="col-sm-2">
-                  <a id="navi-home"class="nav-link" href="index1.html">Home</a>
-              </div>
-              <div class="col-sm-2">
-                  <a id="navi-pets" class="nav-link" href="pets.html">Pets</a>
-              </div>
-              <div class="col-sm-2">
-                  <a id="navi-aboutus"class="nav-link" href="AboutUs.html">AboutUs</a>
-              </div>
-              <div class="col-sm-2">
-
-              <div class="col-sm-2">
-              </div>
-
-          </div>
-          </div>
-      </section>
+    </section>
   </header>
 
 
 
-  <!--Mathis Code -->
+  <!--+++++++++++-->
+  <!--Mathis Code-->
+  <!--+++++++++++-->
 
-  <!--Template Code-->
+  <!--Template Code für Einträge-->
   <template id="tentry">
     <div class="row entryrow">
       <div class="col-lg-5 entry1" id="eintrag1">
@@ -124,62 +127,65 @@
       </div>
     </div>
   </template>
-
+  <!--Template Code, wenn es keine Einträge gibt -->
   <template id="tnoentry">
     <div class="noentry">
       Bisher wurde noch kein Eintrag hinzugefügt.
     </div>
   </template>
+
+
   <main>
-
+    <!--Zeile unter Header, in der 2 Buttons sind-->
     <div class="headline">
-                <button id="b" data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f"/></button>
-                <div class="ausrichtung">
-                  <button id="hinzu" class="btn2">Eintrag hinzufügen</button>
-            </div>
-        </div>
-
-
-
+      <button id="b" data-toggle="collapse" data-target="#filter"><img src="Bilder/filter.png" alt="Filter" id="f" /></button>
+      <div class="ausrichtung">
+        <button id="hinzu" class="btn2">Eintrag hinzufügen</button>
+      </div>
     </div>
 
+
+
+
+    <!--+++++++++++++++++++-->
     <!--Michele Filter Code-->
+    <!--+++++++++++++++++++-->
     <div id="filter" class="collapse">
-    <div class="filter-block">
+      <div class="filter-block">
         <form class="form-horizontal" action="">
-            <div class="row">
-                <div id="mitBorder" class="col-sm-11">
-                    <h3>Tier:</h3>
-                    <div class="checkbox"><label><input type="checkbox" rel="hund" id="hund"/> Hund</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="katze" id="katze"/> Katze</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="vogel" id="vogel"/> Vogel</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="hase" id="hase"/> Hase</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="schildkroete" id="schildkroete"/> Schildkr&oumlte</label></div>
-                    <div class="checkbox"><label><input type="checkbox" rel="sonstiges" id="sonstiges"/> Sonstiges</label></div>
-                </div>
+          <div class="row">
+            <div id="mitBorder" class="col-sm-11">
+              <h3>Tier:</h3>
+              <div class="checkbox"><label><input type="checkbox" rel="hund" id="hund" /> Hund</label></div>
+              <div class="checkbox"><label><input type="checkbox" rel="katze" id="katze" /> Katze</label></div>
+              <div class="checkbox"><label><input type="checkbox" rel="vogel" id="vogel" /> Vogel</label></div>
+              <div class="checkbox"><label><input type="checkbox" rel="hase" id="hase" /> Hase</label></div>
+              <div class="checkbox"><label><input type="checkbox" rel="schildkroete" id="schildkroete" /> Schildkr&oumlte</label></div>
+              <div class="checkbox"><label><input type="checkbox" rel="sonstiges" id="sonstiges" /> Sonstiges</label></div>
             </div>
-            <div class="row">
-                <div id="mitBorder" class= "col-sm-11">
-                    <h3>Datum:</h3>
-                    <label for="suche"> Datum w&aumlhlen: </label>
-                  <input type="date" class="suche" id="datumsuche" placeholder = "Datum..." >
-                </div>
+          </div>
+          <div class="row">
+            <div id="mitBorder" class="col-sm-11">
+              <h3>Datum:</h3>
+              <label for="suche"> Datum w&aumlhlen: </label>
+              <input type="date" class="suche" id="datumsuche" placeholder="Datum...">
             </div>
-            <div class="row">
-                <div id="mitBorder" class= "col-sm-11">
-                    <h3>Ort:</h3>
-                  <label for="suche"> Ort eingeben: </label>
-                  <input type="search" class="suche" id="ortsuche" placeholder = "Ort..." >
-                </div>
+          </div>
+          <div class="row">
+            <div id="mitBorder" class="col-sm-11">
+              <h3>Ort:</h3>
+              <label for="suche"> Ort eingeben: </label>
+              <input type="search" class="suche" id="ortsuche" placeholder="Ort...">
             </div>
-            <div class="row">
-                <div class= "col-sm-11">
-                    <button type="button" id="filtern">Filter</button>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-11">
+              <button type="button" id="filtern">Filter</button>
             </div>
+          </div>
         </form>
+      </div>
     </div>
-    </div>
 
 
 
@@ -189,12 +195,10 @@
 
 
 
-
-
-
-
-
+    <!--+++++++++++-->
     <!--Mathis Code-->
+    <!--+++++++++++-->
+
 
     <!--An dieser Stelle Templates einfügen-->
     <!--keine Einträge-->
@@ -203,18 +207,18 @@
     <div class="container" id="eintrag"></div>
     <!--Filter-->
     <div id="filteransicht">
+      <!--Für die FilterFunktionen-->
       <div class="filterheader">
         <button class="btn3" id="zuruecksetzen">Zurücksetzen</button>
-        <div id="suchergebnisse">Es wurden $Zahl$ Ergebnisse gefunden</div>
+        <div id="suchergebnisse">Es wurden 0 Ergebnisse gefunden</div>
       </div>
       <div class="container" id="gefiltert"></div>
-      <div id="noresult"></div>
     </div>
 
 
 
 
-
+    <!-- Modal, welches sich öffnet, in dem ein Formular enthalten ist-->
     <div id="hmodal" class="modal">
       <div class="modal-content" id="attribute">
         <!--Bootstrap CSS Grid -->
@@ -293,8 +297,6 @@
             </div>
           </div>
 
-
-
           <div class="row">
             <div class="col-lg-11 titel">
               Passwort zum Löschen des Eintrags *
@@ -331,6 +333,9 @@
       </div>
     </div>
   </main>
+  <!--+++++++++++-->
+  <!--Thomas Code-->
+  <!--+++++++++++-->
   <footer>
     <div id="fusszeile" class="row">
 

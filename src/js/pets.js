@@ -24,16 +24,23 @@ window.addEventListener("load", function() {
 
 
 
-
+  //Beim Laden der Seite
+  //Alle Einträge aus Firebase werden damit angezeigt
+  //Referenz auf Firebase wird aufgebaut
   let ref = firebase.database().ref("eintrag");
   ref.once("value")
     .then(function(snapshot) {
       let zahl = snapshot.child("highest").val();
+      //Prüfen, ob es Einträge gibt
       if (zahl!=0){
+        //Wenn die Zahl eine gerade Zahl ist
         if (zahl % 2 == 0) {
           for (let i = 1; i < zahl; i++) {
+            //zwei Einträge werden immer auf einmal ausgelesen und dargestellt mithilfe von Bootstrap
+            //div-dummy wird erstellt
             let dummy = document.createElement("div");
             dummy.innerHTML = tentry;
+            //Werte aus erstem Eintrag werden durch Datenbank-Werte ersetzt
             dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(i).child("name").val());
             dummy.innerHTML = dummy.innerHTML.replace("$Art1$", snapshot.child(i).child("art").val());
             dummy.innerHTML = dummy.innerHTML.replace("$Rasse1$", snapshot.child(i).child("rasse").val());
@@ -43,7 +50,7 @@ window.addEventListener("load", function() {
             dummy.innerHTML = dummy.innerHTML.replace("$bis1$", snapshot.child(i).child("zeitraum").child("Bis").val());
             dummy.innerHTML = dummy.innerHTML.replace("$kommentar1$", snapshot.child(i).child("kommentar").val());
             dummy.innerHTML = dummy.innerHTML.replace("$ID1$", snapshot.child(i).child("ID").val());
-
+            //Werte aus zweitem Eintrag werden durch Datenbank-werte ersetzt
             dummy.innerHTML = dummy.innerHTML.replace("$Name2$", snapshot.child(i + 1).child("name").val());
             dummy.innerHTML = dummy.innerHTML.replace("$Art2$", snapshot.child(i + 1).child("art").val());
             dummy.innerHTML = dummy.innerHTML.replace("$Rasse2$", snapshot.child(i + 1).child("rasse").val());
@@ -53,9 +60,11 @@ window.addEventListener("load", function() {
             dummy.innerHTML = dummy.innerHTML.replace("$bis2$", snapshot.child(i + 1).child("zeitraum").child("Bis").val());
             dummy.innerHTML = dummy.innerHTML.replace("$kommentar2$", snapshot.child(i + 1).child("kommentar").val());
             dummy.innerHTML = dummy.innerHTML.replace("$ID2$", snapshot.child(i + 1).child("ID").val());
-
+            //Der dummy wird an der richtigen Stelle im HTML von pets angehängt
             document.getElementById("eintrag").appendChild(dummy);
-
+            //Die IDs werden noch überarbeitet, damit jeder Wert seine eigene, eindeutige ID besitzt
+            //1. Damit keine doppelten ids
+            //2. Für Weiterarbeiten mit diesem Projekt eine gute Grundlage
             document.getElementById("eintrag1").id = snapshot.child(i).child("ID").val() + "entry";
             document.getElementById("name1").id = snapshot.child(i).child("ID").val() + "name";
             document.getElementById("art1").id = snapshot.child(i).child("ID").val() + "art";
@@ -80,6 +89,9 @@ window.addEventListener("load", function() {
             i++;
           }
         } else {
+          //Wenn es eine ungerade Zahl an Einträgen gibt
+          //fast gleiches Vorgehen, wie oben
+          //nur, dass der Eintrag 1 vor dem letzten Eintrag aus der Datenbank anhält
           for (let i = 1; i < (zahl - 1); i++) {
             let dummy = document.createElement("div");
             dummy.innerHTML = tentry;
@@ -128,6 +140,7 @@ window.addEventListener("load", function() {
 
             i++;
           }
+          //der letzte Datenbankeintrag wird hiermit hinzugefügt
           let dummy = document.createElement("div");
           dummy.innerHTML = tentry;
           dummy.innerHTML = dummy.innerHTML.replace("$Name1$", snapshot.child(zahl).child("name").val());
@@ -152,11 +165,12 @@ window.addEventListener("load", function() {
           document.getElementById("zeitraum1").id = snapshot.child(zahl).child("ID").val() + "zeitraum";
           document.getElementById("kommentar1").id = snapshot.child(zahl).child("ID").val() + "kommentar";
           document.getElementById("loesch1").id = snapshot.child(zahl).child("ID").val();
-
+          //der zweite Eintrag wird unsichtbar gemacht
           document.getElementById("eintrag2").style.display = "none";
         }
       }
       else{
+        //falls es keine Einträge geben sollte, wird dies auch auf der Website angezeigt
         let dummy = document.createElement("div");
         dummy.innerHTML = tnoentry;
         let noentry =document.getElementById("noentrydiv");
@@ -172,19 +186,25 @@ window.addEventListener("load", function() {
 
 
   //OPEN-CLOSE-MODAL
+  //zum öffnen und schließen
   hinzu.addEventListener("click", function() {
+    //öffnen
     hmodal.style.display = "block";
   });
 
 
   close.addEventListener("click", function() {
+    //schließen
     hmodal.style.display = "none";
+    //um die in das Formular eingetragenen Elemente zu resetten
     reset(1);
   });
 
   window.addEventListener("click", function() {
+    //schließen
     if (event.target == hmodal) {
       hmodal.style.display = "none";
+      //um die in das Formular eingetragenen Elemente zu resetten
       reset(1);
     }
 
@@ -194,10 +214,12 @@ window.addEventListener("load", function() {
 
   //in Datenbank übergeben
   submitBtn.addEventListener("click", async function() {
+    //reset der Feldumrandungen
     reset(0);
-
+    //schauen, ob alle Pflichtfelder ausgefüllt sind
     let fehler = 0;
     if (name.value == "") {
+      //rote Umrandung bei jedem Pflichtfeld, welches nicht ausgefüllt wurde
       name.style.border = '1px solid red';
       fehler += 1;
     }
@@ -225,6 +247,7 @@ window.addEventListener("load", function() {
       email.style.border = '1px solid red';
       fehler += 1;
     }
+    //wenn alle Felder ausgefüllt sind, die bnenötigt werden, Übergabe an Datenbank
     if (fehler == 0) {
       let ref = firebase.database().ref("eintrag");
       ref.once("value")
@@ -249,15 +272,20 @@ window.addEventListener("load", function() {
           });
           ref.child("highest").set(zahl);
         });
+      //Modal schließen
       hmodal.style.display = "none";
+      //1 Sekunde warten
       await sleep(1000);
+      //Formular neu laden
       document.location.reload(true);
     } else {
+      //Wenn nicht alle Pflichtfelder ausgefüllt sind, alert mit bitte füllen sie alle Pflichtfelder aus
       alert('Bitte füllen Sie alle Pflichtfelder aus!');
     }
   });
 
   function reset(fall){
+    //Rote Border wieder auf normale Border zurücksetzen
     if(name.style.border == '1px solid red'){
       name.style.border = '1px solid #BEBEBE';
     }
@@ -281,6 +309,7 @@ window.addEventListener("load", function() {
     }
 
     if(fall == 1){
+    //wenn das Modal geschlossen wird zusätzlich alle Einträge in den Feldern löschen
       name.value = "";
       art.value = "";
       wohn.value = "";
@@ -296,7 +325,8 @@ window.addEventListener("load", function() {
 
   }
 
-
+  //gefunden auf Stackoverflow
+  //https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
