@@ -30,6 +30,10 @@ html{
 }
 
 /*Filter*/
+/*Wenn der 2.Eintrag leer ist*/
+.leer{
+  display: none;
+}
 #filteransicht{
   display: none;
   min-height: 50%;
@@ -37,7 +41,7 @@ html{
 .filterheader{
   margin-bottom: 2%;
 }
-
+/*Zurücksetzen Button*/
 .btn3{
   color: white;
   background-color: #ea0000;
@@ -105,6 +109,9 @@ html{
 #ids{
     display: none;
 }
+
+
+
 /* Modal */
 #hmodal{
     background-color: rgba(0,0,0,0.6);
@@ -231,7 +238,7 @@ html{
 }
 
 
-
+/*Für Größere Bildschirme als 1000px optimiert --> Mobile First*/
 @media (min-width: 1000px) {
 
 

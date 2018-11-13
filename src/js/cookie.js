@@ -33,6 +33,7 @@ let apBut = document.createElement("button");
     if (akt === true){
         document.body.removeChild(apDiv);
     }
+    console.log(akt);
     });
 
 });
