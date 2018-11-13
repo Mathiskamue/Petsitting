@@ -1,24 +1,24 @@
 window.addEventListener("load", function() {
 
-
+// Dekleration der Variablen
 let vfooter = document.getElementById(fusszeile);
 let apDiv = document.createElement("div");
 let apH1 = document.createElement("h1");
 let apP   = document.createElement("p");
-
 let apBut = document.createElement("button");
 
+// Button mit Id versehen
     apBut.setAttribute('id','center');
-
+// Text einfügen
     let apHead = document.createTextNode("Diese Webseite verwendet Cookies");
     let apMain = document.createTextNode("Wir verwenden Cookies, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anbieten zu können und die Zugriffe auf unsere Website zu analysieren. Außerdem geben wir Informationen zu Ihrer Verwendung unserer Website an unsere Partner für soziale Medien, Werbung und Analysen weiter. Unsere Partner führen diese Informationen möglicherweise mit weiteren Daten zusammen, die Sie ihnen bereitgestellt haben oder die sie im Rahmen Ihrer Nutzung der Dienste gesammelt haben. Sie geben Einwilligung zu unseren Cookies, wenn Sie unsere Webseite weiterhin nutzen.");
-
+// Style der Elemente anpassen
     apDiv.style.backgroundColor = "red";
     apDiv.style.border="thick solid black";
     apDiv.style.textAlign="center";
     // apDiv.style.position="fixed";
     apBut.style.cursor="pointer";
-
+// Elemente anhängen
     document.body.appendChild(apDiv);
     apDiv.appendChild(apH1);
     apH1.appendChild(apHead);
@@ -26,7 +26,7 @@ let apBut = document.createElement("button");
     apDiv.appendChild(apP);
     apP.appendChild(apBut);
 
-
+// If Abfrage falls Button getrückt wird
     window.akt;
     document.getElementById("center").addEventListener("click",()=>{
     akt = true;

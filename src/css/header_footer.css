@@ -1,23 +1,33 @@
+/* Größe des Banners  */
 #hunderassen
 {
     width:100%;
     height:20em;
 }
+/* Farbe der Tabreiter Navi und Footer */
+a , .navi-home
+{
+    color: white;
+}
+/* Anordnung der Listenelemente  */
 .footer  li
 {
     display: inline;
     list-style-type: none;
+    color:white;
 }
+/* Hover Effekt der Tabreiter */
+.nav-link:hover
+{
+    font-size:175%;
+}
+/* Fabre der navi und des Footers */
 #fusszeile
 {
     background-color: black;
     margin: 0;
 }
 
-li
-{
-    color:white;
-}
 #navigation , #navi
 {
     background-color: black;
